@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('facility_rooms', function (Blueprint $table) {
             $table->id();
-            $table->string('namaFasilitas');
+            $table->string('namaFasilitas', 50);
             $table->timestamps();
         });
     }

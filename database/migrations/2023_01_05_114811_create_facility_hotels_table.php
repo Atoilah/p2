@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('facility_hotels', function (Blueprint $table) {
             $table->id();
             $table->string('namaFasilitas',50);
-            $table->string('keterangan');
-            $table->string('foto')->nullable();
+            $table->string('keterangan', 100);
+            $table->string('foto',100)->nullable();
             $table->timestamps();
         });
     }

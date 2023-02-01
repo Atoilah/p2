@@ -99,6 +99,7 @@
                                     <span class="tb-odr-date d-none d-md-inline-block">Jumlah</span>
                                 </th>
                                 <th class="tb-odr-amount">
+                                    <span class="tb-odr-date d-none d-md-inline-block">Harga</span>
                                     <span class="tb-odr-status d-none d-md-inline-block">Status</span>
                                 </th>
                                 <th class="tb-odr-action">&nbsp;</th>
@@ -110,6 +111,13 @@
                                     <td class="tb-odr-info">
                                         <span class="tb-odr-id">{{ $r->tipeKamar }}</span>
                                         <span class="tb-odr-date">{{ $r->jumlah }}</span>
+                                    </td>
+                                    <td class="tb-odr-amount">
+                                        <span class="tb-odr-id">
+                                                <span class="badge rounded-pill badge-dim bg-outline-success">
+                                                    Rp. {{ number_format($r->harga,2,',','.') }}
+                                                </span>
+                                        </span>
                                     </td>
                                     <td class="tb-odr-amount">
                                         <span class="tb-odr-status">

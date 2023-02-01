@@ -134,19 +134,19 @@ class RoomController extends Controller
 
         $Validasi = $request->validate([
             'tipeKamar' => 'required',
-            'foto'=>'required',
+            // 'foto'=>'required',
             'harga' => 'required',
             'jumlah' => 'required',
         ]);
         $rooms = Room::find($id);
         $rooms->update($request->except(['_token', 'sumbit']));
 
-        // dd($input);
+        dd($request);
         // $room->update($rooms);
 
         // $rooms->update($request->except(['_token', 'sumbit']));
 
-        // return redirect()->route('adminkamar.index')->with('Berhasil', 'Menambahkan Data');
+        return redirect()->route('adminkamar.index')->with('Berhasil', 'Menambahkan Data');
     }
 
     /**

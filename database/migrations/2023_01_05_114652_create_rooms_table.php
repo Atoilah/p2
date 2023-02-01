@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('tipeKamar', 50);
-            $table->string('foto');
+            $table->string('foto',100);
             $table->integer('harga');
             $table->integer('jumlah');
             $table->timestamps();

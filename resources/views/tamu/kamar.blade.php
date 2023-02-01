@@ -41,8 +41,8 @@
                     @foreach ($fRooms as $i)
                         <div class="col-sm-6 col-lg-4">
                             <div class="gallery card">
-                                <a class="gallery-image popup-image" href="images/slides/slide-a.jpg">
-                                    <img class="w-100 rounded-top" src="images/slides/slide-a.jpg" alt="">
+                                <a class="gallery-image popup-image" href="{{ $i->foto }}">
+                                    <img class="w-100 rounded-top" src="{{ $i->foto }}" alt="">
                                 </a>
                                 <div class="gallery-body card-inner align-center justify-between flex-wrap g-2">
                                     <div class="user-card">
