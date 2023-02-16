@@ -35,27 +35,13 @@
             <div class="card-inner">
                 <div class="slider-init"
                     data-slick='{"arrows": true, "dots": true, "slidesToShow": 1, "slidesToScroll": 1, "infinite":true, "responsive":[ {"breakpoint": 992,"settings":{"slidesToShow": 1}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}} ]}'>
-
+                    @foreach ($fHotel as $i)
                     <div class="col">
                         <div class="card card-bordered">
-                            <img src="./images/stock/a.jpg" class="card-img-top img-fluid" alt="">
+                            <img src="{{ $i->foto }}" class="card-img-top img-fluid" alt="">
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card card-bordered">
-                            <img src="./images/stock/b.jpg" class="card-img-top img-fluid" alt="">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-bordered">
-                            <img src="./images/stock/c.jpg" class="card-img-top img-fluid" alt="">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-bordered">
-                            <img src="./images/stock/d.jpg" class="card-img-top img-fluid" alt="">
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -74,8 +60,8 @@
                     @foreach ($fHotel as $i)
                         <div class="col-sm-6 col-lg-4">
                             <div class="gallery card">
-                                <a class="gallery-image popup-image" href="./images/stock/a.jpg">
-                                    <img class="w-100 rounded-top" src="./images/stock/a.jpg" alt="">
+                                <a class="gallery-image popup-image" href="{{ $i->foto }}">
+                                    <img class="w-100 rounded-top" src="{{ $i->foto }}" alt="">
                                 </a>
                                 <div class="gallery-body card-inner align-center justify-between flex-wrap g-2">
                                     <div class="user-card">

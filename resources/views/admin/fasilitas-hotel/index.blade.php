@@ -32,9 +32,25 @@
     </div><!-- .nk-block-head -->
     <div class="nk-block nk-block-lg">
         <div class="nk-block-head">
-
+            <div class="nk-block-head-content">
+                @if (session()->has('Berhasil'))
+                        <div class="alert alert-pro alert-success">
+                            <div class="alert-text">
+                                <h6>{{ session('Berhasil') }}</h6>
+                                <p>berhasil melakukan aktivitas</p>
+                            </div>
+                        </div>
+                @endif
+                @if (session()->has('Delete'))
+                        <div class="alert alert-pro alert-danger">
+                            <div class="alert-text">
+                                <h6>{{ session('Delete') }}</h6>
+                                <p>berhasil melakukan aktivitas</p>
+                            </div>
+                        </div>
+                @endif
+            </div>
         </div>
-
         <div class="nk-block nk-block-lg">
             <div class="nk-block-head">
                 <div class="nk-block-head-content">
@@ -45,7 +61,7 @@
                     <div class="card-inner">
                         <div class="card-title-group">
                             <div class="card-title">
-                                <h5 class="title">Fasilitas Kamar</h5>
+                                <h5 class="title">Fasilitas Hotel</h5>
                             </div>
                             <div class="card-tools me-n1">
                                 <ul class="btn-toolbar">
@@ -81,8 +97,8 @@
                             <thead class="tb-odr-head">
                                 <tr class="tb-odr-item">
                                     <th class="tb-odr-info">
-                                        <span class="tb-odr-id">Nama Fasilitas Hotel</span>
-                                        <span class="tb-odr-date d-none d-md-inline-block">Keterangan</span>
+                                        <span class="tb-odr-id">Nama Fasilitas</span>
+                                        <span class="tb-odr-date ">Keterangan</span>
                                     </th>
                                     <th class="tb-odr-info">
                                         <span class="tb-odr-id">Image</span>
@@ -98,7 +114,11 @@
                                             <span class="tb-odr-date">{{ $h->keterangan }}</span>
                                         </td>
                                         <td class="tb-odr-info">
-                                            <span class="tb-odr-date">{{ $h->foto }}</span>
+                                            <span class="tb-odr-id">
+                                                <a class="gallery-image popup-image" href="{{ $h->foto }}">
+                                                    <img class="w-15 rounded-top" src="{{ $h->foto }}" alt="">
+                                                </a>
+                                            </span>
                                         </td>
                                         <td class="tb-odr-action">
                                             <div class="tb-odr-btns d-none d-md-inline">
@@ -115,12 +135,14 @@
                                                                 class="text-primary">Edit</a></li>
                                                         <li><a data-bs-toggle="modal" data-bs-target="#modalView"
                                                                 class="text-primary">View</a></li>
-                                                        <li><a href="#" class="text-danger">Remove</a></li>
+                                                        <li><a data-bs-toggle="modal" data-bs-target="#Hapus{{ $h->id }}"
+                                                                class="text-danger">Remove</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
                                             @include('admin.fasilitas-hotel.edit')
                                             @include('admin.fasilitas-hotel.view')
+                                            @include('admin.fasilitas-hotel.hapus')
 
                                         </td>
                                     </tr>

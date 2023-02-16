@@ -18,7 +18,7 @@
                                         <em class="icon fas fa-bed"></em>
                                     </div>
                                     <input type="text" class="form-control form-control-xl form-control-outlined  @error('tipeKamar') is-invalid @enderror"
-                                        id="tipeKamar" name="tipeKamar" value="{{old('tipeKamar')}}" required>
+                                        id="tipeKamar" name="tipeKamar" autocomplete="off" value="{{old('tipeKamar')}}" required>
                                     <label class="form-label-outlined" for="tipeKamar">Tipe Kamar</label>
                                     @error('tipeKamar')
                                     <div class="alert alert-fill alert-danger alert-icon">
@@ -31,7 +31,7 @@
 
                         <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
-                                <label class="form-label">Default File Upload</label>
+                                <label class="form-label">Upload Foto</label>
                                 <div class="form-control-wrap">
                                     <div class="form-file">
                                         <input type="file" class="form-file-input  @error('foto') is-invalid @enderror" id="foto" name="foto" value="{{old('foto')}}" required>
@@ -78,6 +78,19 @@
                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                     </div>
                                     @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">Fasilitas Kamar</label>
+                                <div class="form-control-wrap">
+                                    <select name="fasilitasKamar[]" value="{{ old('fasilitasKamar[]') }}" class="form-select js-select2" multiple="multiple" data-placeholder="Select Multiple options">
+                                        @foreach ($froom as $k)
+                                        <option value="{{ $k->id }}">{{ $k->namaFasilitas }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>

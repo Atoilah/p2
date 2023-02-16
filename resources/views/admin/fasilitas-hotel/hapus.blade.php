@@ -1,15 +1,15 @@
-@foreach ($room as $r)
+@foreach ($htl as $r)
     <div class="modal fade" id="Hapus{{ $r->id }}">
         <div class="modal-dialog modal-sm modal-dialog-top" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Hapus Kamar  {{ $r->tipeKamar }}</h5>
+                    <h5 class="modal-title">Hapus Kamar  {{ $r->namaFasilitas }}</h5>
                     <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <em class="icon ni ni-cross"></em>
                     </a>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="adminkamar/{{ $r->id }}" class="form-validate is-alter" enctype="multipart/form-data">
+                    <form method="POST" action="fasilitas-hotel/{{ $r->id }}" class="form-validate is-alter" enctype="multipart/form-data">
                         @method('DELETE')
                         @csrf
                         <input type="text" id="id" name="id"  hidden value="{{ $r->id }}">

@@ -7,6 +7,10 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +40,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email'=>'required',
+            'role' => 'required',
+            'password' => 'required',
+        ],
+        [
+            'name.required' => 'tipe kamar wajib diisi',
+            'email.required' => 'foto wajib diisi',
+            'role.required' => 'harga wajib diisi',
+            'password.required' => 'harga wajib diisi',
+        ]);
+        $input = $request->all();
+        User::create($input);
+        return redirect()->route('user.index')->with('Berhasil', 'Berhasil menambahkan data kamar');
     }
 
     /**
@@ -81,6 +99,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('user.index')->with('Delete', 'Berhasil Menghapus Data');
     }
 }

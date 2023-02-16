@@ -269,13 +269,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-sm-6">
+                                        <div class="col-lg-12 col-sm-12">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
                                                     <select class="form-select js-select2 @error('room_id') is-invalid @enderror"
                                                     value="{{old('room_id')}}" data-ui="xl" id="rooms_id" name="room_id">
                                                         @foreach ($room as $r)
-                                                        <option value="{{ $r->id }}">{{ $r->tipeKamar }}</option>
+                                                        <option value="{{ $r->id }}">
+                                                            {{ $r->tipeKamar }} | ready {{ $r->jumlah }} | Rp. {{ number_format($r->harga,2,',','.') }}
+                                                        </option>
                                                         @endforeach
                                                     </select>
                                                     @error('room_id')

@@ -58,7 +58,7 @@ class FacilityRoomController extends Controller
         $fRoom->namaFasilitas = $request->namaFasilitas;
         $fRoom->save();
 
-        return redirect()->route('fasilitas-kamar.index')->with('success','store');
+        return redirect()->route('fasilitas-kamar.index')->with('Berhasil','menambah data fasilitas kamar');
     }
 
     /**
@@ -101,8 +101,10 @@ class FacilityRoomController extends Controller
      * @param  \App\Models\FacilityRoom  $facilityRoom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FacilityRoom $facilityRoom)
+    public function destroy($id, Request $request)
     {
-        //
+        $fasilitas = FacilityRoom::find($id);
+        $fasilitas->delete();
+        return redirect()->route('fasilitas-kamar.index')->with('Delete', 'Berhasil Menghapus Data');
     }
 }

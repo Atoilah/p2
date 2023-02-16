@@ -32,10 +32,10 @@
     </div><!-- .nk-block-head -->
     <div class="nk-block nk-block-lg">
         <div class="nk-block-head">
-
         </div>
 
         <div class="card card-bordered card-preview">
+
             <div class="card-inner">
                 <div class="row gy-4">
                     @foreach ($fRooms as $i)
@@ -47,12 +47,23 @@
                                 <div class="gallery-body card-inner align-center justify-between flex-wrap g-2">
                                     <div class="user-card">
                                         <div class="user-info">
-                                            <span class="lead-text">{{ $i->tipeKamar }}</span>
+                                            <span class="lead-text">{{ $i->tipeKamar }}
+                                                <span class="badge badge-dim rounded-pill bg-warning">
+                                                    Rp. {{ number_format($i->harga,2,',','.') }}
+                                                </span>
+                                                @if ($i->jumlah == 0)
+                                                <span
+                                                    class="badge rounded-pill badge-dim bg-outline-danger">Kosong</span>
+                                                @else
+                                                    <span class="badge rounded-pill badge-dim bg-outline-success">
+                                                        ready {{ $i->jumlah }}
+                                                    </span>
+                                                @endif
+                                            </span>
                                             <span class="sub-text">Fasilitas:</span>
                                             @foreach ($i->facility_rooms as $item)
-                                                <span class="sub-text-sm"> {{ $item->namaFasilitas }}</span>,
+                                                <span class="sub-text-sm badge badge-dim bg-outline-info"> {{ $item->namaFasilitas }}</span>
                                             @endforeach
-
                                         </div>
                                     </div>
                                 </div>

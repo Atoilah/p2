@@ -8,7 +8,8 @@
                 </a>
             </div>
             <div class="modal-body">
-                <form action="#" class="form-validate is-alter">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('fasilitas-hotel.store') }}"  class="form-validate is-alter">
+                    @csrf
                     <div class="row gy-4">
                         <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
@@ -16,9 +17,14 @@
                                     <div class="form-icon form-icon-right">
                                         <em class="icon fas fa-bed"></em>
                                     </div>
-                                    <input type="text" class="form-control form-control-xl form-control-outlined"
-                                        id="nama-fasilitas">
-                                    <label class="form-label-outlined" for="nama-fasilitas">Nama Fasilitas</label>
+                                    <input type="text" class="form-control form-control-xl form-control-outlined @error('namaFasilitas') is-invalid @enderror"
+                                        id="namaFasilitas" name="namaFasilitas" value="{{ old('namaFasilitas') }}">
+                                    <label class="form-label-outlined" for="namaFasilitas">Nama Fasilitas</label>
+                                    @error('namaFasilitas')
+                                    <div class="alert alert-fill alert-danger alert-icon">
+                                        <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -30,22 +36,37 @@
                                         <em class="icon fas fa-sticky-note"></em>
                                     </div>
                                     <input type="text" class="form-control form-control-xl form-control-outlined"
-                                        id="keterangan">
+                                        id="keterangan" name="keterangan">
                                     <label class="form-label-outlined" for="keterangan">Keterangan</label>
+                                    @error('keterangan')
+                                    <div class="alert alert-fill alert-danger alert-icon">
+                                        <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
+                                <label class="form-label">Upload Foto</label>
                                 <div class="form-control-wrap">
-                                    <div class="form-icon form-icon-right">
-                                        <em class="icon fas fa-file-image"></em>
+                                    <div class="form-file">
+                                        <input type="file" class="form-file-input  @error('foto') is-invalid @enderror" id="foto" name="foto" value="{{old('foto')}}" required>
+                                        <label class="form-file-label" for="foto">Choose file</label>
                                     </div>
-                                    <input type="text" class="form-control form-control-xl form-control-outlined"
-                                        id="image">
-                                    <label class="form-label-outlined" for="image">Image</label>
+                                    @error('foto')
+                                    <div class="alert alert-fill alert-danger alert-icon">
+                                        <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-lg btn-primary">Tambah Fasilitas</button>
                             </div>
                         </div>
                     </div>

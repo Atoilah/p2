@@ -9,7 +9,7 @@
                     </a>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="adminkamar/{{ $r->id }}" class="form-validate is-alter" enctype="multipart/form-data">
+                    <form method="POST" action="fasilitas-kamar/{{ $r->id }}" class="form-validate is-alter" enctype="multipart/form-data">
                         @method('DELETE')
                         @csrf
                         <input type="text" id="id" name="id"  hidden value="{{ $r->id }}">

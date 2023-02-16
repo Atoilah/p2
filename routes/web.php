@@ -43,7 +43,10 @@ Route::get('/dashboard', [App\Http\Controllers\TamuController::class, 'dashboard
 
 Route::resource('transaction', TransactionController::class);
 Route::resource('adminkamar', RoomController::class);
+Route::delete('adminkamar/selectDel/{$id}', [App\Http\Controllers\RoomController::class, 'delete'])->name('roomaal');
+// Route::put('/adminkamar/{}', [RoomController::class, 'update']);
 Route::resource('fasilitas-kamar', FacilityRoomController::class);
+Route::resource('fasilitaskamar', FacilitysRoomController::class);
 Route::resource('fasilitas-hotel', FacilityHotelController::class);
 Route::resource('user', UserController::class);
 

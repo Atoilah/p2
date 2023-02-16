@@ -8,7 +8,7 @@
                 </a>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('register') }}" class="form-validate is-alter">
+                <form method="POST" action="{{ route('user.store') }}" class="form-validate is-alter">
                     @csrf
                     <div class="row gy-4">
                         <div class="col-lg-6 col-sm-12">

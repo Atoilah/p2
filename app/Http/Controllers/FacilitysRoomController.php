@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\FacilitysRoom;
+use App\Models\Room;
 use App\Http\Requests\StoreFacilitysRoomRequest;
 use App\Http\Requests\UpdateFacilitysRoomRequest;
+use Illuminate\Http\Request;
 
 class FacilitysRoomController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -38,9 +40,18 @@ class FacilitysRoomController extends Controller
      * @param  \App\Http\Requests\StoreFacilitysRoomRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFacilitysRoomRequest $request)
+    public function store(Request $request)
     {
-        //
+        // $room = new Room;
+        // $room->facility_rooms()->attach($request->facility_rooms_id);
+        // $rooms = Room::with(['facility_rooms'])->get();
+        $room = new Room;
+        // $room->rooms_id = $request->rooms_id;
+        // $room->save();
+        $room->facility_rooms()->attach($request->fasilitasKamar);
+        dd($request->all());
+        return redirect()->route('fasilitas-kamar.index')->with('Berhasil','menambah data fasilitas kamar');
+
     }
 
     /**
