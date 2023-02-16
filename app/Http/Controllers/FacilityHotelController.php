@@ -93,9 +93,39 @@ class FacilityHotelController extends Controller
      * @param  \App\Models\FacilityHotel  $facilityHotel
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFacilityHotelRequest $request, FacilityHotel $facilityHotel)
+    public function update(Request $request, FacilityHotel $fasilitas_hotel)
     {
-        //
+        $request->validate([
+            'namaFasilitas' => 'required',
+            'keterangan' => 'required',
+        ],
+        [
+            'namaFasilitas.required' => 'tipe kamar wajib diisi',
+            'keterangan.required' => 'harga wajib diisi',
+        ]);
+        $input = $request->all();
+        if ($image = $request->file('foto')) {
+            $destinationPath = public_path('image/hotel/');
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['foto'] = "image/hotel/$profileImage";
+            $update = $fasilitas_hotel->update([
+                'namaFasilitas' => $input["namaFasilitas"],
+                'keterangan' => $input["keterangan"],
+                'foto' => $input["foto"],
+            ]);
+        }else{
+
+            $update = $fasilitas_hotel->update([
+                'namaFasilitas' => $input["namaFasilitas"],
+                'keterangan' => $input["keterangan"],
+            ]);
+        }
+        
+        if(!$update){
+            return redirect()->route('fasilitas-hotel.index')->with('Gagal', 'Gagal merubah data kamar');
+        }
+        return redirect()->route('fasilitas-hotel.index')->with('Berhasil', 'Berhasil merubah data kamar');
     }
 
     /**
@@ -104,17 +134,15 @@ class FacilityHotelController extends Controller
      * @param  \App\Models\FacilityHotel  $facilityHotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(FacilityHotel $fasilitas_hotel)
     {
-        $kamar = FacilityHotel::find($id);
-        // dd($kamar->foto);
-        $image_path = $kamar->foto;  // the value is : localhost/project/image/filename.format
+        $image_path = $fasilitas_hotel->foto;  // the value is : localhost/project/image/filename.format
         if (file_exists($image_path)) {
-
+            
             @unlink($image_path);
-
+            
         }
-        $kamar->delete();
+        $fasilitas_hotel->delete();
         return redirect()->route('fasilitas-hotel.index')->with('Delete', 'Berhasil Menghapus Data');
     }
 }

@@ -131,18 +131,18 @@
                                                         class="icon ni ni-more-h"></em></a>
                                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
                                                     <ul class="link-list-plain">
-                                                        <li><a data-bs-toggle="modal" data-bs-target="#modalEdit"
+                                                        <li><a data-bs-toggle="modal" data-bs-target="#modalEdit-{{$h->id}}"
                                                                 class="text-primary">Edit</a></li>
-                                                        <li><a data-bs-toggle="modal" data-bs-target="#modalView"
+                                                        <li><a data-bs-toggle="modal" data-bs-target="#modalView-{{$h->id}}"
                                                                 class="text-primary">View</a></li>
-                                                        <li><a data-bs-toggle="modal" data-bs-target="#Hapus{{ $h->id }}"
+                                                        <li><a data-bs-toggle="modal" data-bs-target="#Hapus-{{$h->id}}"
                                                                 class="text-danger">Remove</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                            @include('admin.fasilitas-hotel.edit')
-                                            @include('admin.fasilitas-hotel.view')
-                                            @include('admin.fasilitas-hotel.hapus')
+                                            <x-fasilitas-hotel.edit :data=$h />
+                                            <x-fasilitas-hotel.hapus :data=$h />
+                                            <x-fasilitas-hotel.view :data=$h />
 
                                         </td>
                                     </tr>

@@ -101,18 +101,17 @@
                                                             class="icon ni ni-more-h"></em></a>
                                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
                                                         <ul class="link-list-plain">
-                                                            <li><a data-bs-toggle="modal" data-bs-target="#modalEdit"
+                                                            <li><a data-bs-toggle="modal" data-bs-target="#modalEdit-{{$f->id}}"
                                                                     class="text-primary">Edit</a></li>
-                                                            <li><a data-bs-toggle="modal" data-bs-target="#modalView"
+                                                            <li><a data-bs-toggle="modal" data-bs-target="#modalView-{{$f->id}}"
                                                                     class="text-primary">View</a></li>
-                                                            <li><a data-bs-toggle="modal" data-bs-target="#Hapus{{ $f->id }}"
+                                                            <li><a data-bs-toggle="modal" data-bs-target="#Hapus-{{ $f->id }}"
                                                                     class="text-danger">Remove</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
-
-                                                @include('admin.fasilitas-kamar.edit')
-                                                @include('admin.fasilitas-kamar.hapus')
+                                                <x-fasilitas-kamar.edit :data=$f />
+                                                <x-fasilitas-kamar.hapus :data=$f />
 
                                             </td>
                                         </tr>

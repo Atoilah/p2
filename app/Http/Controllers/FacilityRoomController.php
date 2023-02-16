@@ -26,8 +26,6 @@ class FacilityRoomController extends Controller
         $fRooms = Room::with(['facility_rooms'])->get();
         $room = FacilityRoom::all();
         // $fRooms = FacilityRoom::with(['rooms'])->get();
-        // dd($fRooms);
-
         return view('admin.fasilitas-kamar.index', compact('fRooms'), compact('room'));
     }
 
@@ -90,9 +88,25 @@ class FacilityRoomController extends Controller
      * @param  \App\Models\FacilityRoom  $facilityRoom
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFacilityRoomRequest $request, FacilityRoom $facilityRoom)
+    public function update(Request $request, FacilityRoom $fasilitas_kamar)
     {
-        //
+        $facilityRoom = $fasilitas_kamar;
+        // return dd($facilityRoom);
+        $request->validate([
+            'namaFasilitas' => 'required',
+        ]);
+
+        // $fRoom = new FacilityRoom;
+        $update = $facilityRoom->update([
+            "namaFasilitas" => $request->namaFasilitas
+        ]);
+        if(!$update){
+            return dd("gagal");
+            return redirect()->route('fasilitas-kamar.index')->with('Gagal','merubah data fasilitas kamar');
+        }
+        // $fRoom->namaFasilitas = $request->namaFasilitas;
+        // $fRoom->save();
+        return redirect()->route('fasilitas-kamar.index')->with('Berhasil','merubah data fasilitas kamar');
     }
 
     /**
@@ -101,10 +115,10 @@ class FacilityRoomController extends Controller
      * @param  \App\Models\FacilityRoom  $facilityRoom
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(Request $request, FacilityRoom $fasilitas_kamar)
     {
-        $fasilitas = FacilityRoom::find($id);
-        $fasilitas->delete();
+        // $fasilitas = FacilityRoom::find($id);
+        $fasilitas_kamar->delete();
         return redirect()->route('fasilitas-kamar.index')->with('Delete', 'Berhasil Menghapus Data');
     }
 }
