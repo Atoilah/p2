@@ -44,7 +44,7 @@
                                     </div>
                                     <img src="{{$data->foto}}" alt="">
                                     <input type="text" readonly
-                                        class="form-control form-control-xl form-control-outlined" id="image">
+                                        class="form-control form-control-xl form-control-outlined" id="image" name="foto">
                                     <label class="form-label-outlined" for="image">Image</label>
                                 </div>
                             </div>
