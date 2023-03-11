@@ -107,4 +107,18 @@ class TransactionController extends Controller
     {
         //
     }
+
+    public function reservasi(Request $request){
+        $data = Transaction::where('status',0)->get();
+        if(isset($request['check_in_filter'])){
+            $data = Transaction::where('status',$request['check_in_filter'])->get();
+        }
+        return view('reservasi', compact('data'));
+    }
+
+    public function acc(Transaction $id)
+    {
+        $id -> update(['status' =>1]);
+        return redirect()->back()->with('success','update');
+    }
 }

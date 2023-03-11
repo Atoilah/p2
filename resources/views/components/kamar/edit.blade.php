@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalForm">
+<div class="modal fade" id="Edit{{ $data->id }}">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -18,7 +18,7 @@
                                         <em class="icon fas fa-bed"></em>
                                     </div>
                                     <input type="text" class="form-control form-control-xl form-control-outlined  @error('tipeKamar') is-invalid @enderror"
-                                        id="tipeKamar" name="tipeKamar" autocomplete="off" value="{{old('tipeKamar')}}" required>
+                                        id="tipeKamar" name="tipeKamar" autocomplete="off" value="{{$data->tipeKamar, old('tipeKamar')}}" required>
                                     <label class="form-label-outlined" for="tipeKamar">Tipe Kamar</label>
                                     @error('tipeKamar')
                                     <div class="alert alert-fill alert-danger alert-icon">
@@ -53,7 +53,7 @@
                                         <em class="icon fas fa-money-bill"></em>
                                     </div>
                                     <input type="number" class="form-control form-control-xl form-control-outlined  @error('harga') is-invalid @enderror"
-                                        id="harga" name="harga" value="{{old('harga')}}" required>
+                                        id="harga" name="harga" value="{{$data->harga, old('harga')}}" required>
                                     <label class="form-label-outlined" for="harga">harga</label>
                                     @error('harga')
                                     <div class="alert alert-fill alert-danger alert-icon">
@@ -71,7 +71,7 @@
                                         <em class="icon fas fa-house-user"></em>
                                     </div>
                                     <input type="number" class="form-control form-control-xl form-control-outlined  @error('jumlah') is-invalid @enderror"
-                                        id="jumlah" name="jumlah" value="{{old('jumlah')}}" required>
+                                        id="jumlah" name="jumlah" value="{{$data->jumlah, old('jumlah')}}" required>
                                     <label class="form-label-outlined" for="jumlah">Jumlah</label>
                                     @error('jumlah')
                                     <div class="alert alert-fill alert-danger alert-icon">
@@ -86,9 +86,9 @@
                             <div class="form-group">
                                 <label class="form-label">Fasilitas Kamar</label>
                                 <div class="form-control-wrap">
-                                    <select name="fasilitasKamar[]" value="{{ old('fasilitasKamar[]') }}" class="form-select js-select2" multiple="multiple" data-placeholder="Select Multiple options">
-                                        @foreach ($froom as $k)
-                                        <option value="{{ $k->id }}">{{ $k->namaFasilitas }}</option>
+                                    <select name="fasilitasKamar[]" value="{{$data->fasilitasKamar, old('fasilitasKamar[]') }}" class="form-select js-select2" multiple="multiple" data-placeholder="Select Multiple options">
+                                        @foreach ($data->facility_rooms as $k)
+                                        <option value="{{ $k->id }}" selected>{{ $k->namaFasilitas }}</option>
                                         @endforeach
                                     </select>
                                 </div>

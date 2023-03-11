@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('cekIn');
             $table->date('cekOut');
             $table->integer('jumlah')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

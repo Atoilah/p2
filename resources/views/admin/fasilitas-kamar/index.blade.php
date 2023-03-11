@@ -34,95 +34,77 @@
                 @endif
             </div>
         </div>
-        <div class="nk-block nk-block-lg">
-            <div class="nk-block-head">
-                <div class="card card-stretch">
-                    <div class="card-inner-group">
-                        <div class="card-inner">
-                            <div class="card-title-group">
-                                <div class="card-title">
-                                    <h5 class="title">Fasilitas Kamar</h5>
-                                </div>
-                                <div class="card-tools me-n1">
-                                    <ul class="btn-toolbar">
-                                        <li>
-                                            <a href="#" class="btn btn-icon search-toggle toggle-search"
-                                                data-target="search"><em class="icon ni ni-search"></em></a>
-                                        </li><!-- li -->
-                                        <li class="btn-toolbar-sep"></li><!-- li -->
-                                        <li>
-                                            <div class="form-control-wrap">
-                                                <a data-bs-toggle="modal" data-bs-target="#FormFasilitas"
-                                                    class="btn btn-icon btn-trigger align-center"><i
-                                                        class="icon ni ni-plus-circle"></i></a>
-                                            </div>
-
-                                            @include('admin.fasilitas-kamar.tambah')
-                                        </li><!-- li -->
-                                    </ul><!-- .btn-toolbar -->
-                                </div><!-- card-tools -->
-                                <div class="card-search search-wrap" data-search="search">
-                                    <div class="search-content">
-                                        <a href="#" class="search-back btn btn-icon toggle-search"
-                                            data-target="search"><em class="icon ni ni-arrow-left"></em></a>
-                                        <input type="text"
-                                            class="form-control form-control-sm border-transparent form-focus-none"
-                                            placeholder="Quick search by order id">
-                                        <button class="search-submit btn btn-icon"><em
-                                                class="icon ni ni-search"></em></button>
+        @include('admin.fasilitas-kamar.tambah')
+        <div class="nk-block-head">
+            <table class="datatable-init nowrap nk-tb-list is-separate" data-auto-responsive="false">
+                <thead>
+                    <tr class="nk-tb-item nk-tb-head">
+                        <th class="nk-tb-col nk-tb-col-check">
+                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                <input type="checkbox" class="custom-control-input" id="puid" onchange="checkAll(this)" name="chk[]">
+                                <label class="custom-control-label" for="puid"></label>
+                            </div>
+                        </th>
+                        <th class="nk-tb-col tb-col-md"><span>Fasilitas</span></th>
+                        <th class="nk-tb-col nk-tb-col-tools">
+                            <ul class="nk-tb-actions gx-1 my-n1">
+                                <li class="me-n1">
+                                    <div class="dropdown">
+                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <ul class="link-list-opt no-bdr">
+                                                <li><a href="adminkamar/selectDel/9"><em class="icon ni ni-trash"></em><span>Remove Selected</span></a></li>
+                                                <li>
+                                                    <a data-bs-toggle="modal" data-bs-target="#modalForm">
+                                                    <em class="icon ni ni-plus-circle"></em><span>Tambah Data</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div><!-- card-search -->
-                            </div><!-- .card-title-group -->
-                        </div><!-- .card-inner -->
-                        <div class="card-inner p-0">
-                            <table class="table table-orders">
-                                <thead class="tb-odr-head">
-                                    <tr class="tb-odr-item">
-                                        <th class="tb-odr-info">
-                                            <span class="tb-odr-date d-none d-md-inline-block">Fasilitas</span>
-                                        </th>
-                                        <th class="tb-odr-action">&nbsp;</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="tb-odr-body">
-                                    @foreach ($room as $f)
-                                        <tr class="tb-odr-item">
-                                            <td class="tb-odr-info">
-                                                <span class="tb-odr-id">{{ $f->namaFasilitas }}</span>
-                                            </td>
-                                            <td class="tb-odr-action">
-                                                <div class="tb-odr-btns d-none d-md-inline">
-                                                    <a data-bs-toggle="modal" data-bs-target="#modalView"
-                                                        class="btn btn-sm btn-primary">View</a>
-                                                </div>
-                                                <div class="dropdown">
-                                                    <a class="text-soft dropdown-toggle btn btn-icon btn-trigger"
-                                                        data-bs-toggle="dropdown" data-offset="-8,0"><em
-                                                            class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
-                                                        <ul class="link-list-plain">
-                                                            <li><a data-bs-toggle="modal" data-bs-target="#modalEdit-{{$f->id}}"
-                                                                    class="text-primary">Edit</a></li>
-                                                            <li><a data-bs-toggle="modal" data-bs-target="#modalView-{{$f->id}}"
-                                                                    class="text-primary">View</a></li>
-                                                            <li><a data-bs-toggle="modal" data-bs-target="#Hapus-{{ $f->id }}"
-                                                                    class="text-danger">Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <x-fasilitas-kamar.edit :data=$f />
-                                                <x-fasilitas-kamar.hapus :data=$f />
-
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div><!-- .card -->
-                    </div>
-                </div>
-            </div>
-        </div><!-- nk-block -->
+                                </li>
+                            </ul>
+                        </th>
+                    </tr><!-- .nk-tb-item -->
+                </thead>
+                <tbody>
+                    @foreach ($room as $f)
+                    <tr class="nk-tb-item">
+                        <td class="nk-tb-col nk-tb-col-check">
+                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                <input type="checkbox" class="custom-control-input" id="hps" name="hps[]" value="{{ $f->id }}">
+                                <label class="custom-control-label" for="hps"></label>
+                            </div>
+                        </td>
+                        <td class="nk-tb-col">
+                            <span class="tb-lead">
+                                <span class="tb-odr-id">
+                                 {{ $f->namaFasilitas}}
+                                </span>
+                            </span>
+                        </td>
+                        <td class="nk-tb-col nk-tb-col-tools">
+                            <ul class="nk-tb-actions gx-1 my-n1">
+                                <li class="me-n1">
+                                    <div class="dropdown">
+                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <ul class="link-list-opt no-bdr">
+                                                <li><a data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $f->id }}"><em class="icon ni ni-edit"></em><span>Edit Product</span></a></li>
+                                                <li><a data-bs-toggle="modal" data-bs-target="#Hapus-{{ $f->id }}"><em class="icon ni ni-trash"></em><span>Remove Product</span></a></li>
+                                            </ul>
+                                        </div>
+                                        <x-fasilitas-kamar.edit :data=$f />
+                                        <x-fasilitas-kamar.hapus :data=$f />
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr><!-- .nk-tb-item -->
+                    @endforeach
+                </tbody>
+            </table><!-- .nk-tb-list -->
+        </div>
     </div>
     <div class="nk-block">
         <div class="row g-gs">
