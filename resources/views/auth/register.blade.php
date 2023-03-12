@@ -38,7 +38,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <input type="number" value="2" name="role" hidden>
+                        <input type="number" value="0" name="role" hidden>
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

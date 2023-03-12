@@ -1,0 +1,7 @@
+BEGIN
+ IF new.status =  1 THEN
+ UPDATE rooms
+ SET total = jumlah + old.total
+ WHERE id = old.rooms.id
+ END IF;
+END

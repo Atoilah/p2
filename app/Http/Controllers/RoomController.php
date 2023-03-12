@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\FacilityRoom;
+use App\Models\FacilitysRoom;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
 use Illuminate\Http\Request;
@@ -26,7 +27,8 @@ class RoomController extends Controller
     {
         $room = Room::all();
         $froom = FacilityRoom::all();
-        return view('admin.kamar.index', compact('room'), compact('froom'));
+        $frooms = FacilitysRoom::all();
+        return view('admin.kamar.index', compact('room'), compact('froom'), compact('frooms'));
     }
 
     /**

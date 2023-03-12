@@ -8,31 +8,23 @@
                 </a>
             </div>
             <div class="modal-body">
-                <form action="{{ route('fasilitaskamar.store') }}" method="POST" class="form-validate is-alter">
+                <form action="{{ route('fasilitas-kamar.store') }}" method="POST" class="form-validate is-alter">
                     @csrf
                     <div class="row gy-4">
-                        <div class="col-lg-12 col-sm-12">
+                        <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
                                 <div class="form-control-wrap">
-                                    <select name="rooms_id" class="form-select js-select2" data-ui="xl" id="outlined-select">
-                                        <option value="">pilih</option>
-                                        @foreach ($fRooms as $k)
-                                        <option value="{{ $k->id }}">{{ $k->tipeKamar }}</option>
-                                        @endforeach
-                                    </select>
-                                    <label class="form-label-outlined" for="outlined-select">Outlined Select</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Fasilitas Kamar</label>
-                                <div class="form-control-wrap">
-                                    <select name="fasilitasKamar[]" value="{{ old('fasilitasKamar[]') }}" class="form-select js-select2" multiple="multiple" data-placeholder="Select Multiple options">
-                                        @foreach ($room as $k)
-                                        <option value="{{ $k->id }}">{{ $k->namaFasilitas }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="form-icon form-icon-right">
+                                        <em class="icon fas fa-sticky-note"></em>
+                                    </div>
+                                    <input type="text" class="form-control form-control-xl form-control-outlined"
+                                        id="namaFasilitas" name="namaFasilitas">
+                                    <label class="form-label-outlined" for="namaFasilitas">namaFasilitas</label>
+                                    @error('namaFasilitas')
+                                    <div class="alert alert-fill alert-danger alert-icon">
+                                        <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

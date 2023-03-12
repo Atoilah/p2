@@ -27,7 +27,7 @@
                         </li>
                         <!-- .nk-menu-item -->
                         <li class="nk-menu-item">
-                            <a href="{{ route('asu') }}" class="nk-menu-link">
+                            <a href="{{ route('awal') }}" class="nk-menu-link">
                                 <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
                                 <span class="nk-menu-text">Dasboard</span>
                             </a>
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                     @else
-                        @if (Auth::user()->role == 1)
+                        @if (Auth::user()->role == 'admin')
                             <li class="nk-menu-heading">
                                 <h6 class="overline-title text-primary-alt">
                                     Admin
@@ -90,6 +90,34 @@
                                     <span class="nk-menu-text">Default</span>
                                 </a>
                             </li>
+                        @endif
+                        @if (Auth::user()->role == 'user')
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title text-primary-alt">Selamat Datang</h6>
+                        </li>
+                        <li class="nk-menu-heading">
+                            <h5 class="overline-title text-primary-alt">{{ Auth::user()->name }}</h5>
+                        </li>
+                        <!-- .nk-menu-item -->
+                        <li class="nk-menu-item">
+                            <a href="{{ route('asu') }}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
+                                <span class="nk-menu-text">Dasboard</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{{ route('tKamar') }}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-activity-round-fill"></em></span>
+                                <span class="nk-menu-text">Kamar</span>
+                            </a>
+                        </li>
+                        <!-- .nk-menu-item -->
+                        <li class="nk-menu-item">
+                            <a href="{{ route('tFasilitas') }}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-growth-fill"></em></span>
+                                <span class="nk-menu-text">Fasilitas</span>
+                            </a>
+                        </li>
                         @endif
                     @endguest
                 </ul>
