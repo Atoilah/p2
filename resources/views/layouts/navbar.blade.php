@@ -62,7 +62,7 @@
         </div><!-- .nk-header-wrap -->
     </div><!-- .container-fliud -->
 </div>
-@else  
+@else
 @if (Auth::user()->role == 'admin')
 <div class="nk-header nk-header-fixed is-light">
     <div class="container-fluid">
@@ -113,10 +113,18 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"><em
+                                                class="icon ni ni-signout"></em><span>{{ __('Logout') }}</span></a>
+                                    </li>
                                 </ul>
                             </div>
-                        </div>  
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
                     </li><!-- .dropdown -->
                 </ul><!-- .nk-quick-nav -->
             </div><!-- .nk-header-tools -->
@@ -174,10 +182,18 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"><em
+                                                class="icon ni ni-signout"></em><span>{{ __('Logout') }}</span></a>
+                                    </li>
                                 </ul>
                             </div>
-                        </div>  
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
                     </li><!-- .dropdown -->
                 </ul><!-- .nk-quick-nav -->
             </div><!-- .nk-header-tools -->
@@ -246,7 +262,7 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-                        </div>  
+                        </div>
                     </li><!-- .dropdown -->
                 </ul><!-- .nk-quick-nav -->
             </div><!-- .nk-header-tools -->

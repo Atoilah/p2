@@ -52,7 +52,7 @@ class LoginController extends Controller
                 return redirect()->route('adminkamar.index');
             }else if(auth()->user()->role == 'resepsionis'){
                 return redirect()->route('transaction.index');
-            }else{
+            }else if(auth()->user()->role == 'user'){
                 return redirect()->route('aku');
             }
         }else{

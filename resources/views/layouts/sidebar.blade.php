@@ -144,8 +144,8 @@
                     </ul><!-- .nk-menu -->
                 </div><!-- .nk-sidebar-menu -->
             </div><!-- .nk-sidebar-content -->
-        </div><!-- .nk-sidebar-element -->    
-</div>    
+        </div><!-- .nk-sidebar-element -->
+</div>
 @endif
 @if (Auth::user()->role == 'user')
 <div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
@@ -213,7 +213,7 @@
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->
         </div><!-- .nk-sidebar-content -->
-    </div><!-- .nk-sidebar-element -->    
-</div>       
+    </div><!-- .nk-sidebar-element -->
+</div>
 @endif
-@endguest       
+@endguest

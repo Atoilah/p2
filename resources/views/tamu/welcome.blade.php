@@ -311,6 +311,85 @@
             <p>hotel kami berada ditempat yang strategis dengan harga murah dekat dengan <code> booking online </code>.</p>
         </div>
     </div>
+
+
+
+    <div class="nk-block nk-block-lg">
+        <div class="nk-block-head">
+            <h3>List Data Kamar</h3>
+        </div>
+
+        <div class="card card-bordered card-preview">
+
+            <div class="card-inner">
+                <div class="row gy-4">
+                    @foreach ($fRooms as $i)
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="gallery card">
+                                <a class="gallery-image popup-image" href="{{ $i->foto }}">
+                                    <img class="w-100 rounded-top" src="{{ $i->foto }}" alt="">
+                                </a>
+                                <div class="gallery-body card-inner align-center justify-between flex-wrap g-2">
+                                    <div class="user-card">
+                                        <div class="user-info">
+                                            <span class="lead-text">{{ $i->tipeKamar }}
+                                                <span class="badge badge-dim rounded-pill bg-warning">
+                                                    Rp. {{ number_format($i->harga,2,',','.') }}
+                                                </span>
+                                                @if ($i->jumlah == 0)
+                                                <span
+                                                    class="badge rounded-pill badge-dim bg-outline-danger">Kosong</span>
+                                                @else
+                                                    <span class="badge rounded-pill badge-dim bg-outline-success">
+                                                        ready {{ $i->jumlah }}
+                                                    </span>
+                                                @endif
+                                            </span>
+                                            <span class="sub-text">Fasilitas:</span>
+                                            @foreach ($i->facility_rooms as $item)
+                                                +<span class="sub-text-sm badge badge-dim bg-outline-info"> {{ $item->namaFasilitas }}</span> <br>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div><!-- .card-preview -->
+    </div>
+
+
+    <div class="nk-block nk-block-lg">
+        <div class="nk-block-head">
+            <h3>Fasilitas Hotel</h3>
+        </div>
+
+        <div class="card card-bordered card-preview">
+            <div class="card-inner">
+                <div class="row gy-4">
+                    @foreach ($fHotel as $i)
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="gallery card">
+                                <a class="gallery-image popup-image" href="{{ $i->foto }}">
+                                    <img class="w-100 rounded-top" src="{{ $i->foto }}" alt="">
+                                </a>
+                                <div class="gallery-body card-inner align-center justify-between flex-wrap g-2">
+                                    <div class="user-card">
+                                        <div class="user-info">
+                                            <span class="lead-text">{{ $i->namaFasilitas }}</span>
+                                            <span class="sub-text">{{ $i->keterangan }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div><!-- .card-preview -->
+    </div>
     <div class="nk-block-content">
 
     </div>

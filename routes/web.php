@@ -18,23 +18,12 @@ use App\Http\Controllers\FacilityHotelController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return redirect(route('awal'));
-});
-
-// Route::get('/dashboard', function () {
-//     return view('tamu.welcome');
-// })->name('asu');
-// Route::get('kamar', function () {
-//     return view('tamu.kamar');
-// })->name('tKamar');
-// Route::get('fasilitas', function () {
-//     return view('tamu.fasilitas');
-// })->name('tFasilitas');
-
 Auth::routes(
 
 );
+Route::get('/', function () {
+    return redirect(route('awal'));
+});
 Route::get('/dashboard', [App\Http\Controllers\TamuController::class, 'dashboard'])->name('awal');
 
 
