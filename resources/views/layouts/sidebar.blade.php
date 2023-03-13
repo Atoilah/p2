@@ -49,7 +49,7 @@
                     <li class="nk-menu-item">
                         <a href="{{route('user.index')}}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
-                            <span class="nk-menu-text">Customers</span>
+                            <span class="nk-menu-text">Users</span>
                         </a>
                     </li><!-- .nk-menu-item -->
                 </ul><!-- .nk-menu -->
@@ -187,26 +187,12 @@
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item has-sub">
                         <a href="#" class="nk-menu-link nk-menu-toggle">
-                            <span class="nk-menu-icon"><em class="icon ni ni-calendar-booking-fill"></em></span>
-                            <span class="nk-menu-text">Bookings</span>
-                        </a>
-                        <ul class="nk-menu-sub">
-                            <li class="nk-menu-item">
-                                <a href="html/hotel/bookings.html" class="nk-menu-link"><span class="nk-menu-text">All Bookings</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="html/hotel/booking-add.html" class="nk-menu-link"><span class="nk-menu-text">Add Booking</span></a>
-                            </li>
-                        </ul>
-                    </li><!-- .nk-menu-item -->
-                    <li class="nk-menu-item has-sub">
-                        <a href="#" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
                             <span class="nk-menu-text">Pembayaran</span>
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="html/hotel/invoice-list.html" class="nk-menu-link"><span class="nk-menu-text">Invocie List</span></a>
+                                <a href="html/hotel/invoice-list.html" class="nk-menu-link"><span class="nk-menu-text">Data Pemnbayaran</span></a>
                             </li>
                         </ul>
                     </li><!-- .nk-menu-item -->

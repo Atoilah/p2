@@ -26,12 +26,12 @@ class TamuController extends Controller
     }
     public function dashboard()
     {
-        // $room = Room::all();
+        $rooms = Room::all();
         $fRooms = Room::with(['facility_rooms'])->get();
         $room = FacilityRoom::all();
         $fHotel = FacilityHotel::all();
 
-        return view('tamu.welcome', compact('room','fRooms','fHotel'));
+        return view('tamu.welcome', compact('room','rooms','fRooms','fHotel'));
     }
 
     public function store(Request $request)

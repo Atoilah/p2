@@ -29,9 +29,9 @@ Route::get('/dashboard', [App\Http\Controllers\TamuController::class, 'dashboard
 
 
 Route::middleware(['auth','user-role:user'])->group(function(){
-    Route::get('/', function () {
-        return redirect(route('aku'));
-    });
+    // Route::get('/', function () {
+    //     return redirect(route('aku'));
+    // });
     Route::get('/kamar', [App\Http\Controllers\TamuController::class, 'kamar'])->name('dataKamar');
     Route::get('/fasilitas', [App\Http\Controllers\TamuController::class, 'fasilitas'])->name('dataFasilitas');
     Route::get('/welcome', [App\Http\Controllers\TamuController::class, 'dashboard'])->name('aku');
