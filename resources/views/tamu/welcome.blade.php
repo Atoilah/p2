@@ -13,30 +13,6 @@
             <div class="nk-block-head-content">
                 <h3 class="nk-block-title page-title">Selamat Datang Dihotel Kita</h3>
             </div><!-- .nk-block-head-content -->
-
-            <div class="nk-block-head-content">
-                {{-- <div class="toggle-wrap nk-block-tools-toggle">
-                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                <div class="toggle-expand-content" data-content="pageMenu">
-                    <ul class="nk-block-tools g-3">
-                        <li>
-                            <div class="drodown">
-                                <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-calender-date"></em><span><span class="d-none d-md-inline">Last</span> 30 Days</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <ul class="link-list-opt no-bdr">
-                                        <li><a href="#"><span>Last 30 Days</span></a></li>
-                                        <li><a href="#"><span>Last 6 Months</span></a></li>
-                                        <li><a href="#"><span>Last 1 Years</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li>
-                    </ul>
-                </div>
-            </div> --}}
-            </div>
-            <!-- .nk-block-head-content -->
         </div><!-- .nk-block-between -->
     </div><!-- .nk-block-head -->
     <div class="nk-block-head-lg nk-block-head-sm">
@@ -148,7 +124,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <p>Sudah Punya Akun? <a href="{{ route('login') }}">Login</a>
-                                    <br>Belum Punya> <a href="{{ route('register') }}">Buat Akun</a>
+                                    <br>Belum Punya Akun? <a href="{{ route('register') }}">Buat Akun</a>
                                     </p>
                                 </div>
                                 <div class="modal-footer bg-light">

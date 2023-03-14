@@ -53,7 +53,7 @@ class LoginController extends Controller
             }else if(auth()->user()->role == 'resepsionis'){
                 return redirect()->route('transaction.index');
             }else{
-                return redirect()->route('asu');
+                return redirect()->route('aku');
             }
         }else{
             return redirect()->route('login')->with('error', 'password atau email salah');

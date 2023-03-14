@@ -35,18 +35,17 @@ Route::get('/', function () {
 Auth::routes(
 
 );
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/listKamar', [App\Http\Controllers\TamuController::class, 'kamar'])->name('tKamar');
-Route::get('/listFasilitas', [App\Http\Controllers\TamuController::class, 'fasilitas'])->name('tFasilitas');
 Route::get('/dashboard', [App\Http\Controllers\TamuController::class, 'dashboard'])->name('awal');
 
 
 
 Route::middleware(['auth','user-role:user'])->group(function(){
+    Route::get('/', function () {
+        return redirect(route('aku'));
+    });
     Route::get('/kamar', [App\Http\Controllers\TamuController::class, 'kamar'])->name('dataKamar');
     Route::get('/fasilitas', [App\Http\Controllers\TamuController::class, 'fasilitas'])->name('dataFasilitas');
-    Route::get('/welcome', [App\Http\Controllers\TamuController::class, 'dashboard'])->name('asu');
+    Route::get('/welcome', [App\Http\Controllers\TamuController::class, 'dashboard'])->name('aku');
     Route::post('welcome-pesan',[App\Http\Controllers\TransactionController::class, 'store'])->name('pesan');
 });
 

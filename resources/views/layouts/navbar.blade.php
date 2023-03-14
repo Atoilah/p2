@@ -1,130 +1,257 @@
+@guest
 <div class="nk-header nk-header-fixed is-light">
     <div class="container-fluid">
         <div class="nk-header-wrap">
             <div class="nk-menu-trigger d-xl-none ms-n1">
-                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
-                        class="icon ni ni-menu"></em></a>
+                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
             </div>
             <div class="nk-header-brand d-xl-none">
-                <a href="#" class="logo-link">
-                    <img class="logo-light logo-img" src="/images/logo.png" srcset="/images/logo2x.png 2x"
-                        alt="logo" />
-                    <img class="logo-dark logo-img" src="/images/logo-dark.png" srcset="/images/logo-dark2x.png 2x"
-                        alt="logo-dark" />
+                <a href="{{ route('awal') }}" class="logo-link">
+                    <img class="logo-light logo-img" src="/images/logo.png" srcset="/images/logo2x.png 2x" alt="logo">
+                    <img class="logo-dark logo-img" src="/images/logo-dark.png" srcset="/images/logo-dark2x.png 2x" alt="logo-dark">
                 </a>
-            </div>
+            </div><!-- .nk-header-brand -->
 
-            <!-- .nk-header-news -->
             <div class="nk-header-tools">
                 <ul class="nk-quick-nav">
-                    <!-- .dropdown -->
                     <li class="dropdown user-dropdown">
-                        @guest
-                            <a href="#" class="dropdown-toggle me-n1" data-bs-toggle="dropdown">
-                                <div class="user-toggle">
-                                    <div class="user-avatar sm">
-                                        <em class="icon ni ni-user-alt"></em>
-                                    </div>
-                                    <div class="user-info d-none d-xl-block">
-                                        <div class="user-status user-status-unverified">
-                                            Unverified
-                                        </div>
-                                        <div class="user-name dropdown-indicator">
-                                            Tamu
-                                        </div>
-                                    </div>
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                            <div class="user-toggle">
+                                <div class="user-avatar sm">
+                                    <em class="icon ni ni-user-alt"></em>
                                 </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-end">
-                                <div class="dropdown-inner">
-                                    <ul class="link-list">
-                                        @if (Route::has('login'))
-                                            <li>
-                                                <a href="{{ route('login') }}"><em
-                                                        class="icon bi bi-heart"></em><span>{{ __('Login') }}</span></a>
-                                            </li>
-                                        @endif
-
-                                        {{-- @if (Route::has('register'))
-                                            <li>
-                                                <a href="{{ route('register') }}"><em
-                                                        class="icon ni ni-setting-alt"></em><span>{{ __('Register') }}</span></a>
-                                            </li>
-                                        @endif --}}
-                                    </ul>
+                                <div class="user-info d-none d-md-block">
+                                    <div class="user-status">Guest</div>
+                                    <div class="user-name dropdown-indicator">Not Loggin</div>
                                 </div>
                             </div>
-                        @else
-                            <a href="#" class="dropdown-toggle me-n1" data-bs-toggle="dropdown">
-                                <div class="user-toggle">
-                                    <div class="user-avatar sm">
-                                        <em class="icon ni ni-user-alt"></em>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
+                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                <div class="user-card">
+                                    <div class="user-avatar">
+                                        <span>GS</span>
                                     </div>
-                                    <div class="user-info d-none d-xl-block">
-                                        <div class="user-status user-status-verified">
-                                            verified
-                                        </div>
-                                        <div class="user-name dropdown-indicator">
-                                            {{ Auth::user()->name }}
-                                        </div>
+                                    <div class="user-info">
+                                        <span class="lead-text">?</span>
+                                        <span class="sub-text">info@softnio.com</span>
                                     </div>
                                 </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-end">
-                                <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
-                                    <div class="user-card">
-                                        <div class="user-avatar">
-                                            <span>AB</span>
-                                        </div>
-                                        <div class="user-info">
-                                            <span class="lead-text">{{ Auth::user()->name }}</span>
-                                            <span class="sub-text">{{ Auth::user()->email }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dropdown-inner">
-                                    <ul class="link-list">
-                                        <li>
-                                            <a href="html/user-profile-regular.html"><em
-                                                    class="icon ni ni-user-alt"></em><span>View Profile</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="html/user-profile-setting.html"><em
-                                                    class="icon ni ni-setting-alt"></em><span>Account Setting</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="html/user-profile-activity.html"><em
-                                                    class="icon ni ni-activity-alt"></em><span>Login Activity</span></a>
-                                        </li>
-                                        <li>
-                                            <a class="dark-switch" href="#"><em
-                                                    class="icon ni ni-moon"></em><span>Dark
-                                                    Mode</span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="dropdown-inner">
-                                    <ul class="link-list">
-                                        <li>
-                                            <a href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();"><em
-                                                    class="icon ni ni-signout"></em><span>{{ __('Logout') }}</span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
                             </div>
-                        @endguest
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    @if (Route::has('login'))
+                                        <li>
+                                            <a href="{{ route('login') }}"><em
+                                                    class="icon ti ti-unlock"></em><span>{{ __('Login') }}</span></a>
+                                        </li>
+                                    @endif
 
-
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- .nk-header-wrap -->
-    </div>
-    <!-- .container-fliud -->
+                                    @if (Route::has('register'))
+                                        <li>
+                                            <a href="{{ route('register') }}"><em
+                                                    class="icon fas fa-user-plus"></em><span> {{ __('Register') }}</span></a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </div>
+                    </li><!-- .dropdown -->
+                </ul><!-- .nk-quick-nav -->
+            </div><!-- .nk-header-tools -->
+        </div><!-- .nk-header-wrap -->
+    </div><!-- .container-fliud -->
 </div>
+@else  
+@if (Auth::user()->role == 'admin')
+<div class="nk-header nk-header-fixed is-light">
+    <div class="container-fluid">
+        <div class="nk-header-wrap">
+            <div class="nk-menu-trigger d-xl-none ms-n1">
+                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+            </div>
+            <div class="nk-header-brand d-xl-none">
+                <a href="{{ route('awal') }}" class="logo-link">
+                    <img class="logo-light logo-img" src="/images/logo.png" srcset="/images/logo2x.png 2x" alt="logo">
+                    <img class="logo-dark logo-img" src="/images/logo-dark.png" srcset="/images/logo-dark2x.png 2x" alt="logo-dark">
+                </a>
+            </div><!-- .nk-header-brand -->
+
+            <div class="nk-header-tools">
+                <ul class="nk-quick-nav">
+                    <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                            <div class="user-toggle">
+                                <div class="user-avatar sm">
+                                    <em class="icon ni ni-user-alt"></em>
+                                </div>
+                                <div class="user-info d-none d-md-block">
+                                    <div class="user-status">Administrator</div>
+                                    <div class="user-name dropdown-indicator">Abu Bin Ishityak</div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
+                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                <div class="user-card">
+                                    <div class="user-avatar">
+                                        <span>AB</span>
+                                    </div>
+                                    <div class="user-info">
+                                        <span class="lead-text">Abu Bin Ishtiyak</span>
+                                        <span class="sub-text">info@softnio.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    <li><a href="#"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                    <li><a href="html/hotel/settings.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                    <li><a href="html/hotel/settings-activity-log.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                </ul>
+                            </div>
+                        </div>  
+                    </li><!-- .dropdown -->
+                </ul><!-- .nk-quick-nav -->
+            </div><!-- .nk-header-tools -->
+        </div><!-- .nk-header-wrap -->
+    </div><!-- .container-fliud -->
+</div>
+@endif
+@if (Auth::user()->role == 'resepsionis')
+<div class="nk-header nk-header-fixed is-light">
+    <div class="container-fluid">
+        <div class="nk-header-wrap">
+            <div class="nk-menu-trigger d-xl-none ms-n1">
+                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+            </div>
+            <div class="nk-header-brand d-xl-none">
+                <a href="{{ route('awal') }}" class="logo-link">
+                    <img class="logo-light logo-img" src="/images/logo.png" srcset="/images/logo2x.png 2x" alt="logo">
+                    <img class="logo-dark logo-img" src="/images/logo-dark.png" srcset="/images/logo-dark2x.png 2x" alt="logo-dark">
+                </a>
+            </div><!-- .nk-header-brand -->
+
+            <div class="nk-header-tools">
+                <ul class="nk-quick-nav">
+                    <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                            <div class="user-toggle">
+                                <div class="user-avatar sm">
+                                    <em class="icon ni ni-user-alt"></em>
+                                </div>
+                                <div class="user-info d-none d-md-block">
+                                    <div class="user-status">Administrator</div>
+                                    <div class="user-name dropdown-indicator">Abu Bin Ishityak</div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
+                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                <div class="user-card">
+                                    <div class="user-avatar">
+                                        <span>AB</span>
+                                    </div>
+                                    <div class="user-info">
+                                        <span class="lead-text">Abu Bin Ishtiyak</span>
+                                        <span class="sub-text">info@softnio.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    <li><a href="#"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                    <li><a href="html/hotel/settings.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                    <li><a href="html/hotel/settings-activity-log.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                </ul>
+                            </div>
+                        </div>  
+                    </li><!-- .dropdown -->
+                </ul><!-- .nk-quick-nav -->
+            </div><!-- .nk-header-tools -->
+        </div><!-- .nk-header-wrap -->
+    </div><!-- .container-fliud -->
+</div>
+@endif
+@if (Auth::user()->role == 'user')
+<div class="nk-header nk-header-fixed is-light">
+    <div class="container-fluid">
+        <div class="nk-header-wrap">
+            <div class="nk-menu-trigger d-xl-none ms-n1">
+                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+            </div>
+            <div class="nk-header-brand d-xl-none">
+                <a href="{{ route('aku') }}" class="logo-link">
+                    <img class="logo-light logo-img" src="/images/logo.png" srcset="/images/logo2x.png 2x" alt="logo">
+                    <img class="logo-dark logo-img" src="/images/logo-dark.png" srcset="/images/logo-dark2x.png 2x" alt="logo-dark">
+                </a>
+            </div><!-- .nk-header-brand -->
+
+            <div class="nk-header-tools">
+                <ul class="nk-quick-nav">
+                    <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                            <div class="user-toggle">
+                                <div class="user-avatar sm">
+                                    <em class="icon ni ni-user-alt"></em>
+                                </div>
+                                <div class="user-info d-none d-md-block">
+                                    <div class="user-status">Customers</div>
+                                    <div class="user-name dropdown-indicator">{{ Auth::user()->name }}</div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
+                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                <div class="user-card">
+                                    <div class="user-avatar">
+                                        <span>AB</span>
+                                    </div>
+                                    <div class="user-info">
+                                        <span class="lead-text">{{ Auth::user()->name }}</span>
+                                        <span class="sub-text">{{ Auth::user()->email }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    <li><a href="#"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                    <li><a href="html/hotel/settings.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                    <li><a href="html/hotel/settings-activity-log.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"><em
+                                                class="icon ni ni-signout"></em><span>{{ __('Logout') }}</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>  
+                    </li><!-- .dropdown -->
+                </ul><!-- .nk-quick-nav -->
+            </div><!-- .nk-header-tools -->
+        </div><!-- .nk-header-wrap -->
+    </div><!-- .container-fliud -->
+</div>
+@endif
+@endguest
