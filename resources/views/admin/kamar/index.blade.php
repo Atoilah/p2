@@ -54,6 +54,15 @@
     </div>
     @include('admin.kamar.tambah')
     <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h4 class="nk-block-title">Data Kamar</h4>
+            <div class="nk-block-des">
+                <p>Data Tentang Kamar dan Jumlah Kamar Yang tersedia </p>
+            </div>
+        </div>
+    </div>
+    <div class="card card-bordered card-preview">
+        <div class="card-inner bg-gray-100">
         <table class="datatable-init nowrap nk-tb-list is-separate" data-auto-responsive="false">
             <thead>
                 <tr class="nk-tb-item nk-tb-head">
@@ -156,7 +165,7 @@
             </tbody>
         </table><!-- .nk-tb-list -->
     </div>
+</div><!-- .card-preview -->
 </div>
-
 
 @endsection

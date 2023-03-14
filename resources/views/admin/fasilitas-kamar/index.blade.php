@@ -1,18 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <div class="nk-block-head nk-block-head-sm">
-        <div class="nk-block-between">
-            <div class="nk-block-head-content">
-                <h3 class="nk-block-title page-title">Admin Fasilitas-Kamar</h3>
-            </div><!-- .nk-block-head-content -->
-            <div class="nk-block-head-content">
-                <div class="toggle-wrap nk-block-tools-toggle">
-                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
-                            class="icon ni ni-more-v"></em></a>
-                </div>
-            </div><!-- .nk-block-head-content -->
-        </div><!-- .nk-block-between -->
-    </div><!-- .nk-block-head -->
     <div class="nk-block nk-block-lg">
         <div class="nk-block-head">
             <div class="nk-block-head-content">
@@ -35,7 +22,17 @@
             </div>
         </div>
         @include('admin.fasilitas-kamar.tambah')
-        <div class="nk-block-head">
+
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h4 class="nk-block-title">Data Fasilitas Kamar</h4>
+            <div class="nk-block-des">
+                <p>Data Fasilitas Kamar</p>
+            </div>
+        </div>
+    </div>
+    <div class="card card-bordered card-preview">
+        <div class="card-inner">
             <table class="datatable-init nowrap nk-tb-list is-separate" data-auto-responsive="false">
                 <thead>
                     <tr class="nk-tb-item nk-tb-head">
@@ -55,7 +52,7 @@
                                             <ul class="link-list-opt no-bdr">
                                                 <li><a href="adminkamar/selectDel/9"><em class="icon ni ni-trash"></em><span>Remove Selected</span></a></li>
                                                 <li>
-                                                    <a data-bs-toggle="modal" data-bs-target="#modalForm">
+                                                    <a data-bs-toggle="modal" data-bs-target="#FormFasilitasKamar">
                                                     <em class="icon ni ni-plus-circle"></em><span>Tambah Data</span>
                                                     </a>
                                                 </li>
@@ -105,10 +102,6 @@
                 </tbody>
             </table><!-- .nk-tb-list -->
         </div>
-    </div>
-    <div class="nk-block">
-        <div class="row g-gs">
-
-        </div><!-- .row -->
-    </div><!-- .nk-block -->
+    </div><!-- .card-preview -->
+</div>
 @endsection

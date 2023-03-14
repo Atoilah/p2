@@ -14,5 +14,10 @@ class FacilityRoom extends Model
     //     'facilitys_room_id',
     // ];
 
+    public function rooms()
+    {
+        return $this->belongsToMany(Room::class, 'facilitys_rooms', 'rooms_id', 'facility_rooms_id');
+    }
+
 
 }

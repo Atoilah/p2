@@ -9,4 +9,9 @@ class Transaction extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $with = ['get_rooms'];
+
+    public function get_rooms(){
+        return $this->belongsTo(Room::class, 'room_id', 'id');
+    }
 }

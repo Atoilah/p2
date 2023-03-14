@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('namaPemesan',50);
-            $table->string('email',50);
+            // $table->string('email',50);
             $table->string('telp', 20);
             $table->string('namaTamu',50);
             $table->foreignId('room_id')->constrained();

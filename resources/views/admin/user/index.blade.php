@@ -119,12 +119,15 @@
                                     </td>
                                     <td class="tb-odr-amount">
                                         <span class="tb-odr-status">
-                                            @if ($r->role == 1)
+                                            @if ($r->role == 'admin')
                                                 <span
                                                     class="badge rounded-pill badge-dim bg-outline-danger">Admin</span>
-                                            @else
+                                            @elseif($r->role == 'resepsionis')
                                                 <span
                                                     class="badge rounded-pill badge-dim bg-outline-success">resepsionis</span>
+                                            @elseif($r->role == 'user')
+                                                <span
+                                                class="badge rounded-pill badge-dim bg-outline-success">user</span>
                                             @endif
                                         </span>
                                     </td>
@@ -177,16 +180,15 @@
                                 </div>
                             </th>
                             <th class="nk-tb-col"><span class="sub-text">User</span></th>
-                            <th class="nk-tb-col tb-col-mb"><span class="sub-text">Balance</span></th>
-                            <th class="nk-tb-col tb-col-md"><span class="sub-text">Phone</span></th>
                             <th class="nk-tb-col tb-col-lg"><span class="sub-text">Verified</span></th>
-                            <th class="nk-tb-col tb-col-lg"><span class="sub-text">Last Login</span></th>
-                            <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
+                            <th class="nk-tb-col tb-col-lg"><span class="sub-text">Create Account</span></th>
+                            <th class="nk-tb-col tb-col-md"><span class="sub-text">Role</span></th>
                             <th class="nk-tb-col nk-tb-col-tools text-end">
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($user as $r)
                         <tr class="nk-tb-item">
                             <td class="nk-tb-col nk-tb-col-check">
                                 <div class="custom-control custom-control-sm custom-checkbox notext">
@@ -200,28 +202,30 @@
                                         <span>AB</span>
                                     </div>
                                     <div class="user-info">
-                                        <span class="tb-lead">Abu Bin Ishtiyak <span class="dot dot-success d-md-none ms-1"></span></span>
-                                        <span>info@softnio.com</span>
+                                        <span class="tb-lead">{{ $r->name }}<span class="dot dot-success d-md-none ms-1"></span></span>
+                                        <span>{{ $r->email }}</span>
                                     </div>
                                 </div>
                             </td>
-                            <td class="nk-tb-col tb-col-mb" data-order="35040.34">
-                                <span class="tb-amount">35040.34 <span class="currency">USD</span></span>
-                            </td>
-                            <td class="nk-tb-col tb-col-md">
-                                <span>+811 847-4958</span>
-                            </td>
                             <td class="nk-tb-col tb-col-lg" data-order="Email Verified - Kyc Unverified">
-                                <ul class="list-status">
-                                    <li><em class="icon text-success ni ni-check-circle"></em> <span>Email</span></li>
-                                    <li><em class="icon ni ni-alert-circle"></em> <span>KYC</span></li>
-                                </ul>
+                                 @if ($r->email_verified_at == null)
+                                 <li><em class="icon ni text-danger ni-alert-circle"></em> <span>Email</span></li>
+                                 @else
+                                 <li><em class="icon text-success ni ni-check-circle"></em> <span>Email</span></li>
+
+                                 @endif
                             </td>
                             <td class="nk-tb-col tb-col-lg">
                                 <span>05 Oct 2019</span>
                             </td>
                             <td class="nk-tb-col tb-col-md">
-                                <span class="tb-status text-success">Active</span>
+                                @if ($r->role == 'user')
+                                <span class="tb-status text-danger">User</span>
+                                @elseif($r->role == 'admin')
+                                <span class="tb-status text-success">Admin</span>
+                                @elseif($r->role == 'resepsionis')
+                                <span class="tb-status text-warning">Resepsionis</span>
+                                @endif
                             </td>
                             <td class="nk-tb-col nk-tb-col-tools">
                                 <ul class="nk-tb-actions gx-1">
@@ -255,11 +259,13 @@
                                                     <li><a href="#"><em class="icon ni ni-na"></em><span>Suspend User</span></a></li>
                                                 </ul>
                                             </div>
+                                            @include('admin.user.hapus')
                                         </div>
                                     </li>
                                 </ul>
                             </td>
                         </tr><!-- .nk-tb-item  -->
+                        @endforeach
                     </tbody>
                 </table>
             </div>

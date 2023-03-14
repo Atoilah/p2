@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,26 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request)
+    {
+        $input = $request->all();
+        $this->validate($request, [
+            'email'=>'required|email',
+            'password'=>'required',
+        ]);
+
+        if(auth()->attempt(['email' => $input['email'], 'password' => $input['password']])){
+            if(Auth()->user()->role == 'admin'){
+                return redirect()->route('adminkamar.index');
+            }else if(auth()->user()->role == 'resepsionis'){
+                return redirect()->route('transaction.index');
+            }else{
+                return redirect()->route('asu');
+            }
+        }else{
+            return redirect()->route('login')->with('error', 'password atau email salah');
+        }
     }
 }

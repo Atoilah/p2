@@ -40,10 +40,10 @@ class TransactionController extends Controller
     {
         $request->validate([
             'namaPemesan' =>'required|max:50',
-            'email' =>'required|email',
             'telp' =>'required|max:15',
             'namaTamu' =>'required|max:50',
             'room_id' =>'required|integer',
+            'user_id' =>'required|integer',
             'cekIn' =>'required|date',
             'cekOut' =>'required|date',
             'jumlah' =>'required|integer',
@@ -51,10 +51,10 @@ class TransactionController extends Controller
 
         $transaction = new Transaction;
         $transaction->namaPemesan = $request->namaPemesan;
-        $transaction->email = $request->email;
         $transaction->telp = $request->telp;
         $transaction->namaTamu = $request->namaTamu;
         $transaction->room_id = $request->room_id;
+        $transaction->user_id = $request->user_id;
         $transaction->cekIn = $request->cekIn;
         $transaction->cekOut = $request->cekOut;
         $transaction->jumlah = $request->jumlah;
