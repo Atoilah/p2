@@ -59,112 +59,12 @@
                 </div>
             </div>
         </div>
-        <div class="card card-stretch">
-            <div class="card-inner-group">
-                <div class="card-inner">
-                    <div class="card-title-group">
-                        <div class="card-title">
-                            <h5 class="title">Users</h5>
-                        </div>
-                        <div class="card-tools me-n1">
-                            <ul class="btn-toolbar">
-                                <li>
-                                    <a href="#" class="btn btn-icon search-toggle toggle-search"
-                                        data-target="search"><em class="icon ni ni-search"></em></a>
-                                </li><!-- li -->
-                                <li class="btn-toolbar-sep"></li><!-- li -->
-                                <li>
-                                    <div class="form-control-wrap">
-                                        <a data-bs-toggle="modal" data-bs-target="#modalForm"
-                                            class="btn btn-icon btn-trigger align-center"><i
-                                                class="icon ni ni-plus-circle"></i></a>
-                                    </div>
-
-
-                                </li><!-- li -->
-                            </ul><!-- .btn-toolbar -->
-                        </div><!-- card-tools -->
-                        <div class="card-search search-wrap" data-search="search">
-                            <div class="search-content">
-                                <a href="#" class="search-back btn btn-icon toggle-search"
-                                    data-target="search"><em class="icon ni ni-arrow-left"></em></a>
-                                <input type="text"
-                                    class="form-control form-control-sm border-transparent form-focus-none"
-                                    placeholder="Quick search by order id">
-                                <button class="search-submit btn btn-icon"><em class="icon ni ni-search"></em></button>
-                            </div>
-                        </div><!-- card-search -->
-                    </div><!-- .card-title-group -->
-                </div><!-- .card-inner -->
-                <div class="card-inner p-0">
-                    <table class="table table-orders">
-                        <thead class="tb-odr-head">
-                            <tr class="tb-odr-item">
-                                <th class="tb-odr-info">
-                                    <span class="tb-odr-id">Nama</span>
-                                    <span class="tb-odr-date d-none d-md-inline-block">email</span>
-                                </th>
-                                <th class="tb-odr-amount">
-                                    <span class="tb-odr-status d-none d-md-inline-block">role</span>
-                                </th>
-                                <th class="tb-odr-action">&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tb-odr-body">
-                            @foreach ($user as $r)
-                                <tr class="tb-odr-item">
-                                    <td class="tb-odr-info">
-                                        <span class="tb-odr-id">{{ $r->name }}</span>
-                                        <span class="tb-odr-date">{{ $r->email }}</span>
-                                    </td>
-                                    <td class="tb-odr-amount">
-                                        <span class="tb-odr-status">
-                                            @if ($r->role == 'admin')
-                                                <span
-                                                    class="badge rounded-pill badge-dim bg-outline-danger">Admin</span>
-                                            @elseif($r->role == 'resepsionis')
-                                                <span
-                                                    class="badge rounded-pill badge-dim bg-outline-success">resepsionis</span>
-                                            @elseif($r->role == 'user')
-                                                <span
-                                                class="badge rounded-pill badge-dim bg-outline-success">user</span>
-                                            @endif
-                                        </span>
-                                    </td>
-                                    <td class="tb-odr-action">
-                                        <div class="dropdown">
-                                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger"
-                                                data-bs-toggle="dropdown" data-offset="-8,0"><em
-                                                    class="icon ni ni-more-h"></em></a>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
-                                                <ul class="link-list-plain">
-                                                    <li><a data-bs-toggle="modal"
-                                                            data-bs-target="#Edit{{ $r->id }}"
-                                                            class="text-primary">Edit</a></li>
-                                                    <li><a data-bs-toggle="modal"
-                                                            data-bs-target="#View{{ $r->id }}"
-                                                            class="text-primary">View</a></li>
-                                                    <li><a data-bs-toggle="modal"
-                                                            data-bs-target="#Hapus{{ $r->id }}"
-                                                            class="text-danger">Remove</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @include('admin.user.hapus')
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div><!-- .card -->
-            </div>
-        </div>
 
         <div class="nk-block-head">
             <div class="nk-block-head-content">
-                <h4 class="nk-block-title">Data Table</h4>
+                <h4 class="nk-block-title">Data Users</h4>
                 <div class="nk-block-des">
-                    <p>Using the most basic table markup, here’s how <code class="code-class">.table</code> based tables look by default.</p>
+                    <p>Data User(Admin , Resepsionis Dan Customer)</p>
                 </div>
             </div>
         </div>
@@ -183,7 +83,24 @@
                             <th class="nk-tb-col tb-col-lg"><span class="sub-text">Verified</span></th>
                             <th class="nk-tb-col tb-col-lg"><span class="sub-text">Create Account</span></th>
                             <th class="nk-tb-col tb-col-md"><span class="sub-text">Role</span></th>
-                            <th class="nk-tb-col nk-tb-col-tools text-end">
+                            <th class="nk-tb-col nk-tb-col-tools">
+                                <ul class="nk-tb-actions gx-1 my-n1">
+                                    <li class="me-n1">
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="adminkamar/selectDel/9"><em class="icon ni ni-trash"></em><span>Remove Selected</span></a></li>
+                                                    <li>
+                                                        <a data-bs-toggle="modal" data-bs-target="#modalForm">
+                                                        <em class="icon ni ni-plus-circle"></em><span>Tambah Data</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </th>
                         </tr>
                     </thead>
@@ -199,7 +116,7 @@
                             <td class="nk-tb-col">
                                 <div class="user-card">
                                     <div class="user-avatar bg-dim-primary d-none d-sm-flex">
-                                        <span>AB</span>
+                                        <span>ID</span>
                                     </div>
                                     <div class="user-info">
                                         <span class="tb-lead">{{ $r->name }}<span class="dot dot-success d-md-none ms-1"></span></span>

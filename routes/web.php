@@ -29,13 +29,12 @@ Route::get('/dashboard', [App\Http\Controllers\TamuController::class, 'dashboard
 
 
 Route::middleware(['auth','user-role:user'])->group(function(){
-    // Route::get('/', function () {
-    //     return redirect(route('aku'));
-    // });
     Route::get('/kamar', [App\Http\Controllers\TamuController::class, 'kamar'])->name('dataKamar');
     Route::get('/fasilitas', [App\Http\Controllers\TamuController::class, 'fasilitas'])->name('dataFasilitas');
-    Route::get('/welcome', [App\Http\Controllers\TamuController::class, 'dashboard'])->name('aku');
-    Route::post('welcome-pesan',[App\Http\Controllers\TransactionController::class, 'store'])->name('pesan');
+    Route::get('/home', [App\Http\Controllers\TamuController::class, 'dashboard'])->name('aku');
+    Route::post('home-pesan',[App\Http\Controllers\TransactionController::class, 'store'])->name('pesan');
+    Route::get('/pesan/{user}', [App\Http\Controllers\TamuController::class, 'invoice'])->name('list');
+    Route::get('/detail/{user}', [App\Http\Controllers\TamuController::class, 'detail'])->name('detail');
 });
 
 Route::middleware(['auth','user-role:admin'])->group(function(){
@@ -51,11 +50,4 @@ Route::middleware(['auth','user-role:admin'])->group(function(){
 
 Route::middleware(['auth','user-role:resepsionis'])->group(function(){
     Route::resource('transaction', TransactionController::class);
-    // Route::resource('adminkamar', RoomController::class);
-    // Route::delete('adminkamar/selectDel/{$id}', [App\Http\Controllers\RoomController::class, 'delete'])->name('roomaal');
-    // // Route::put('/adminkamar/{}', [RoomController::class, 'update']);
-    // Route::resource('fasilitas-kamar', FacilityRoomController::class);
-    // Route::resource('fasilitaskamar', FacilitysRoomController::class);
-    // Route::resource('fasilitas-hotel', FacilityHotelController::class);
-    // Route::resource('user', UserController::class);
 });

@@ -347,7 +347,7 @@
                                             </span>
                                             <span class="sub-text">Fasilitas:</span>
                                             @foreach ($i->facility_rooms as $item)
-                                                +<span class="sub-text-sm badge badge-dim bg-outline-info"> {{ $item->namaFasilitas }}</span> <br>
+                                                <span class="sub-text-sm badge badge-dim bg-outline-info"> {{ $item->namaFasilitas }}</span>
                                             @endforeach
                                         </div>
                                     </div>

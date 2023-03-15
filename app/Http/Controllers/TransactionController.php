@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Transaction;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class TransactionController extends Controller
 {
@@ -38,6 +40,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+        $uuid = Str::uuid()->toString();
         $request->validate([
             'namaPemesan' =>'required|max:50',
             'telp' =>'required|max:15',
@@ -48,6 +51,7 @@ class TransactionController extends Controller
             'cekOut' =>'required|date',
             'jumlah' =>'required|integer',
         ]);
+        $mytime = date('H:i:s');
 
         $transaction = new Transaction;
         $transaction->namaPemesan = $request->namaPemesan;
@@ -60,7 +64,7 @@ class TransactionController extends Controller
         $transaction->jumlah = $request->jumlah;
         $transaction->save();
 
-        return redirect()->route('asu')->with('success','store');
+        return redirect()->route('aku')->with('success','store');
     }
 
     /**

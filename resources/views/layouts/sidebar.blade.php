@@ -172,16 +172,16 @@
                         </a>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item has-sub">
-                        <a href="{{ route('dataKamar') }}" class="nk-menu-link nk-menu-toggle">
+                        <a href="#" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-home-fill"></em></span>
-                            <span class="nk-menu-text">Kamar</span>
+                            <span class="nk-menu-text">Fasilitas</span>
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="html/hotel/room-list.html" class="nk-menu-link"><span class="nk-menu-text">Semua Kamar</span></a>
+                                <a href="{{ route('dataKamar') }}" class="nk-menu-link"><span class="nk-menu-text">Kamar</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="html/hotel/room-type.html" class="nk-menu-link"><span class="nk-menu-text">Tipe Kamar</span></a>
+                                <a href="{{ route('dataFasilitas') }}" class="nk-menu-link"><span class="nk-menu-text">Fasilitas hotel</span></a>
                             </li>
                         </ul>
                     </li><!-- .nk-menu-item -->
@@ -192,7 +192,8 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="html/hotel/invoice-list.html" class="nk-menu-link"><span class="nk-menu-text">Data Pemnbayaran</span></a>
+                                {{-- <a href="/pesan/{{ Auth::user()->id }}" class="nk-menu-link"><span class="nk-menu-text">Data Pemnbayaran</span></a> --}}
+                                <a href="{{ route('list', Auth::user()->id) }}" class="nk-menu-link"><span class="nk-menu-text">Data Pemnbayaran</span></a>
                             </li>
                         </ul>
                     </li><!-- .nk-menu-item -->
