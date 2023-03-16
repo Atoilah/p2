@@ -36,6 +36,7 @@ class TransactionController extends Controller
         ->leftJoin('users', 'transactions.user_id', '=', 'users.id')
         ->where('status', 0)
         ->get();
+
         dd($data);
         return view('resepsionis.invoice',compact('data'));
     }
@@ -181,6 +182,11 @@ class TransactionController extends Controller
     {
         $id -> update(['status' =>1]);
         return redirect()->back()->with('Berhasil','Berhasil Menerima');
+    }
+    public function keluar(Transaction $id)
+    {
+        $id -> update(['status' =>2]);
+        return redirect()->back()->with('Berhasil','Berhasil Cek Out');
     }
     public function batal(Transaction $id)
     {

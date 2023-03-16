@@ -55,9 +55,10 @@ Route::middleware(['auth','user-role:resepsionis'])->group(function(){
     Route::resource('transaction', TransactionController::class);
     Route::put('/transaction/batal/{id}', [App\Http\Controllers\TransactionController::class, 'batal'])->name('tolak');
     Route::put('/transaction/terima/{id}', [App\Http\Controllers\TransactionController::class, 'acc'])->name('terima');
-    Route::get('/transaction/persetujuan/', [App\Http\Controllers\TransactionController::class, 'persetujuan'])->name('persetujuan');
-    Route::get('/transaction/cekIn/', [App\Http\Controllers\TransactionController::class, 'cekIn'])->name('cekIn');
-    Route::get('/transaction/cekOut/', [App\Http\Controllers\TransactionController::class, 'cekOut'])->name('cekOut');
-    Route::get('/transaction/cancel/', [App\Http\Controllers\TransactionController::class, 'cancel'])->name('cancel');
-    Route::get('/transaction/selesai/', [App\Http\Controllers\TransactionController::class, 'selesai'])->name('selesai');
+    Route::put('/transaction/cekOut/{id}', [App\Http\Controllers\TransactionController::class, 'keluar'])->name('keluar');
+    Route::get('/transaction/persetujuan', [App\Http\Controllers\TransactionController::class, 'persetujuan'])->name('persetujuan');
+    Route::get('/transaction/cekIn', [App\Http\Controllers\TransactionController::class, 'cekIn'])->name('cekIn');
+    Route::get('/transaction/cekOut', [App\Http\Controllers\TransactionController::class, 'cekOut'])->name('cekOut');
+    Route::get('/transaction/cancel', [App\Http\Controllers\TransactionController::class, 'cancel'])->name('cancel');
+    Route::get('/transaction/selesai', [App\Http\Controllers\TransactionController::class, 'selesai'])->name('selesai');
 });

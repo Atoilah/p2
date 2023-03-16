@@ -40,6 +40,7 @@
                         <th>Tipe Kamar</th>
                         <th>Status</th>
                         <th>Cek in</th>
+                        <th>Cek Out</th>
                         <th>Total</th>
                         <th class="nk-tb-col nk-tb-col-tools">&nbsp;</th>
                     </tr>
@@ -68,6 +69,7 @@
                             @endif
                         </td>
                         <td>{{ $a->cekIn }}</td>
+                        <td>{{ $a->cekOut    }}</td>
                         <td>{{ rupiah(total($a->cekIn, $a->cekOut , $a->harga, $a->jumlah)) }}</td>
                         <td class="nk-tb-col nk-tb-col-tools">
                             @if ($a->status == 0 )
@@ -78,7 +80,7 @@
                                         @method('put')
                                         <button type="submit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Terima">
                                             <em class="icon fas fa-check-circle"></em>
-                                        </a>
+                                        </button>
                                     </form>
                                 </li>
                                 <li class="nk-tb-action-hidden">
@@ -87,7 +89,7 @@
                                         @method('put')
                                         <button type="submit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Tolak">
                                             <em class="icon fas fa-times-circle"></em>
-                                        </a>
+                                        </button>
                                     </form>
                                 </li>
                                 <li class="nk-tb-action-hidden">
@@ -110,18 +112,17 @@
                             @if ($a->status == 1 )
                             <ul class="nk-tb-actions gx-1">
                                 <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Wallet">
-                                        <em class="icon ni ni-wallet-fill"></em>
-                                    </a>
+                                    <form action="{{ route('keluar', $a->id) }}" method="post">
+                                        @csrf
+                                        @method('put')
+                                        <button type="submit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Cek Out">
+                                            <em class="icon fas fa-check-circle"></em>
+                                        </button>
+                                    </form>
                                 </li>
                                 <li class="nk-tb-action-hidden">
                                     <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Email">
                                         <em class="icon ni ni-mail-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend">
-                                        <em class="icon ni ni-user-cross-fill"></em>
                                     </a>
                                 </li>
                                 <li>
@@ -139,18 +140,8 @@
                             @if ($a->status == 2 )
                             <ul class="nk-tb-actions gx-1">
                                 <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Wallet">
-                                        <em class="icon ni ni-wallet-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
                                     <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Email">
                                         <em class="icon ni ni-mail-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend">
-                                        <em class="icon ni ni-user-cross-fill"></em>
                                     </a>
                                 </li>
                                 <li>
@@ -168,18 +159,8 @@
                             @if ($a->status == 3 )
                             <ul class="nk-tb-actions gx-1">
                                 <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Wallet">
-                                        <em class="icon ni ni-wallet-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
                                     <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Email">
                                         <em class="icon ni ni-mail-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend">
-                                        <em class="icon ni ni-user-cross-fill"></em>
                                     </a>
                                 </li>
                                 <li>
