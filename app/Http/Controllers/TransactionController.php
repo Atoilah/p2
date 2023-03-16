@@ -37,7 +37,6 @@ class TransactionController extends Controller
         ->where('status', 0)
         ->get();
 
-        dd($data);
         return view('resepsionis.invoice',compact('data'));
     }
     public function cekIn()
