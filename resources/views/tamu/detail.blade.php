@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <title>{{ config('app.name', 'Hotel') }}</title>
-    
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="/css/libs/themify-icons.css">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" type="text/css" href="/css/libs/bootstrap-icons.css">
-    
+
     <!-- Scripts -->
 </head>
 
@@ -39,7 +39,7 @@
                     <div class="invoice-contact">
                         <span class="overline-title">Invoice To</span>
                         <div class="invoice-contact-info">
-                            <h4 class="title">Gregory Anderson</h4>
+                            <h4 class="title">Hotel Kita</h4>
                             <ul class="list-plain">
                                 <li><em class="icon ni ni-map-pin-fill fs-18px"></em><span>House #65, 4328 Marion Street<br>Newbury, VT 05051</span></li>
                                 <li><em class="icon ni ni-call-fill fs-14px"></em><span>+012 8764 556</span></li>
@@ -49,8 +49,8 @@
                     <div class="invoice-desc">
                         <h3 class="title">Invoice</h3>
                         <ul class="list-plain">
-                            <li class="invoice-id"><span>Invoice ID</span>:<span>66K5W3</span></li>
-                            <li class="invoice-date"><span>Date</span>:<span>26 Jan, 2020</span></li>
+                            <li class="invoice-id"><span>Invoice ID</span>:<span>{{ $data[0]->kode }}</span></li>
+                            <li class="invoice-date"><span>Date</span>:<span>{{ Carbon\Carbon::now()->format('D, d M Y') }}</span></li>
                         </ul>
                     </div>
                 </div><!-- .invoice-head -->
@@ -59,63 +59,37 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th class="w-150px">Item ID</th>
-                                    <th class="w-60">Description</th>
-                                    <th>Price</th>
-                                    <th>Qty</th>
-                                    <th>Amount</th>
+                                    <th class="w-200px">Kode</th>
+                                    <th>Tipe Kamar</th>
+                                    <th>Harga/malam</th>
+                                    <th>Jumlah Kamar</th>
+                                    <th>Booking</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($data as $i)
                                 <tr>
-                                    <td>24108054</td>
-                                    <td>Dashlite - Conceptual App Dashboard - Regular License</td>
-                                    <td>$40.00</td>
-                                    <td>5</td>
-                                    <td>$200.00</td>
+                                    <td>{{ $i->kode }}</td>
+                                    <td>{{ $i->tipeKamar }}</td>
+                                    <td>{{ rupiah($i->harga) }}</td>
+                                    <td>{{ $i->jumlah }}</td>
+                                    <td>{{ hari($i->cekIn, $i->cekOut) }} Malam</td>
                                 </tr>
-                                <tr>
-                                    <td>24108054</td>
-                                    <td>6 months premium support</td>
-                                    <td>$25.00</td>
-                                    <td>1</td>
-                                    <td>$25.00</td>
-                                </tr>
-                                <tr>
-                                    <td>23604094</td>
-                                    <td>Invest Management Dashboard - Regular License</td>
-                                    <td>$131.25</td>
-                                    <td>1</td>
-                                    <td>$131.25</td>
-                                </tr>
-                                <tr>
-                                    <td>23604094</td>
-                                    <td>6 months premium support</td>
-                                    <td>$78.75</td>
-                                    <td>1</td>
-                                    <td>$78.75</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td colspan="2">Subtotal</td>
-                                    <td>$435.00</td>
+                                    <td colspan="1">Subtotal</td>
+                                    <td colspan="1">Harga Kamar x Malam </td>
+                                    <td>{{ rupiah(malam($i->cekIn, $i->cekOut , $i->harga)) }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td colspan="2">Processing fee</td>
-                                    <td>$10.00</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                    <td colspan="2">TAX</td>
-                                    <td>$43.50</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                    <td colspan="2">Grand Total</td>
-                                    <td>$478.50</td>
+                                    <td colspan="1">GrandTotal</td>
+                                    <td colspan="1">{{ rupiah(malam($i->cekIn, $i->cekOut , $i->harga)) }} x {{ $i->jumlah }}</td>
+                                    <td>{{ rupiah(total($i->cekIn, $i->cekOut , $i->harga, $i->jumlah)) }}</td>
+
                                 </tr>
                             </tfoot>
                         </table>

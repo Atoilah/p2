@@ -19,7 +19,7 @@ class Transaction extends Model
     // }
 
     use AutoNumberTrait;
-    
+
     /**
      * Return the autonumber configuration array for this model.
      *
@@ -30,14 +30,14 @@ class Transaction extends Model
         return [
             'kode' => [
                 'format' => function () {
-                    return 'TRX/' . date('Ymd') . '/?';
+                    return 'TRX-' . date('Ymd') . '-?';
                 }, // Format kode yang akan digunakan.
                 'length' => 3 // Jumlah digit yang akan digunakan sebagai nomor urut
             ]
         ];
     }
-    // protected $guarded = ['id'];
-    protected $with = ['get_rooms'];
+    protected $guarded = ['id'];
+    protected $with = ['room'];
 
     public function room(){
         return $this->belongsTo(Room::class);

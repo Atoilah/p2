@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <label class="form-label" for="email-address">Jumlah Tersedia</label>
                                 <div class="form-control-wrap">
-                                    <input type="text" value="{{ $data->jumlah }} unit" readonly class="form-control" id="email-address" required>
+                                    <input type="text" value="{{ $data->tKamar }} unit" readonly class="form-control" id="email-address" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -52,9 +52,11 @@
                     <div class="tab-pane" id="tabItem2{{ $data->id }}">
                         <h6 class="title">Data Transaksi</h6>
                         <form action="{{ route('pesan') }}" method="POST" class="form-validate is-alter">
+                            @csrf
+                            @method('PUT')
                             <input type="text" value="{{ $data->user_id }}" hidden name="user_id">
                             <div class="row gy-4">
-                                @if ($data->status == '0')
+                                @if ($data->status == 0)
                                     <div class="col-lg-4 col-sm-6">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
@@ -95,7 +97,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -110,7 +112,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +127,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -140,7 +142,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -164,20 +166,22 @@
                                                 </select>
                                                 @error('room_id')
                                                     <span class="invalid-feedback" role="alert">
-        
+
                                                     </span>
                                                     <div class="alert alert-fill alert-danger alert-icon">
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <form action="" method="post">
-                                                <button type="submit" class="btn btn-lg btn-primary">Batal Pesan</button>
+                                            <form action="{{ route('batal', $data->id) }}" method="post">
+                                                @csrf
+                                                @method('put')
+                                                <a href="{{ route('batal', $data->id) }}" class="btn btn-lg btn-primary">Batal Pesan</a>
                                             </form>
                                         </div>
                                     </div>
@@ -227,7 +231,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -242,7 +246,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -257,7 +261,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -272,7 +276,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -287,7 +291,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -332,7 +336,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -347,7 +351,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -362,7 +366,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -377,7 +381,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -392,7 +396,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -437,7 +441,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -452,7 +456,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -467,7 +471,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -482,7 +486,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -497,11 +501,11 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
-                                
+
                                 @elseif ($data->status == 4)
                                     <div class="col-lg-4 col-sm-6">
                                         <div class="form-group">
@@ -543,7 +547,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -558,7 +562,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -573,7 +577,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -588,7 +592,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -603,7 +607,7 @@
                                                         <em class="icon ni ni-cross-circle"></em><strong>{{ $message }}</strong>
                                                     </div>
                                                 @enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>

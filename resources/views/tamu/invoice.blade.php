@@ -1,5 +1,27 @@
 @extends('layouts.app')
 @section('content')
+<div class="nk-block-head">
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            @if (session()->has('Berhasil'))
+                    <div class="alert alert-pro alert-success">
+                        <div class="alert-text">
+                            <h6>{{ session('Berhasil') }}</h6>
+                            <p>berhasil melakukan aktivitas</p>
+                        </div>
+                    </div>
+            @endif
+            @if (session()->has('Delete'))
+                    <div class="alert alert-pro alert-danger">
+                        <div class="alert-text">
+                            <h6>{{ session('Delete') }}</h6>
+                            <p>berhasil melakukan aktivitas</p>
+                        </div>
+                    </div>
+            @endif
+        </div>
+    </div>
+</div>
 <div class="nk-content ">
     <div class="container-fluid">
         <div class="nk-content-inner">
@@ -102,7 +124,7 @@
                                                 <span class="tb-odr-date">{{ $a->namaPemesan }}</span>
                                             </td>
                                             <td class="tb-odr-amount">
-                                                
+
                                                 <span class="tb-odr-total">
                                                     <span class="amount">{{ rupiah(total($a->cekIn, $a->cekOut , $a->harga, $a->jumlah)) }}</span>
                                                 </span>
@@ -126,7 +148,18 @@
                                             </td>
                                             <td class="tb-odr-action">
                                                 <div class="tb-odr-btns d-none d-sm-inline">
-                                                    <a href="{{ route('detail', Auth::user()->id) }}" target="_blank" class="btn btn-icon btn-white btn-dim btn-sm btn-primary"><em class="icon ni ni-printer-fill"></em></a>
+                                                    @if ($a->status == 0 )
+                                                        <a href="{{ route('detail', $a->kode) }}" target="_blank" class="btn btn-icon btn-white btn-dim btn-sm btn-primary"><em class="icon ni ni-printer-fill"></em></a>
+                                                    @endif
+                                                    @if ($a->status == 1 )
+                                                    <a href="{{ route('detail', $a->kode) }}" target="_blank" class="btn btn-icon btn-white btn-dim btn-sm btn-primary"><em class="icon ni ni-printer-fill"></em></a>
+                                                    @endif
+                                                    @if ($a->status == 2 )
+                                                    <a href="{{ route('detail', $a->kode) }}" target="_blank" class="btn btn-icon btn-white btn-dim btn-sm btn-primary"><em class="icon ni ni-printer-fill"></em></a>
+                                                    @endif
+                                                    @if ($a->status == 4 )
+                                                    <a href="{{ route('detail', $a->kode) }}" target="_blank" class="btn btn-icon btn-white btn-dim btn-sm btn-primary"><em class="icon ni ni-printer-fill"></em></a>
+                                                    @endif
                                                     <a data-bs-toggle="modal" data-bs-target="#Edit{{ $a->id }}" class="btn btn-dim btn-sm btn-primary">View</a>
                                                 </div>
                                                 <a href="html/hotel/invoice-details.html" class="btn btn-pd-auto d-sm-none"><em class="icon ni ni-chevron-right"></em></a>

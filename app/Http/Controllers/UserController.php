@@ -41,7 +41,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $uuid = Str::uuid()->toString();
         $request->validate([
             'name' => 'required',
             'email'=>'required',

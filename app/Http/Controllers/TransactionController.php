@@ -9,6 +9,8 @@ use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 
 class TransactionController extends Controller
 {
@@ -19,7 +21,63 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $data = DB::table('transactions')
+        ->select('transactions.*' , 'rooms.harga', 'rooms.tipeKamar', 'rooms.jumlah as tKamar', 'users.email', 'users.name', 'users.role')
+        ->leftJoin('rooms', 'transactions.room_id', '=', 'rooms.id')
+        ->leftJoin('users', 'transactions.user_id', '=', 'users.id')
+        ->get();
+        return view('resepsionis.invoice',compact('data'));
+    }
+    public function persetujuan()
+    {
+        $data = DB::table('transactions')
+        ->select('transactions.*' , 'rooms.harga', 'rooms.tipeKamar', 'rooms.jumlah as tKamar', 'users.email', 'users.name', 'users.role')
+        ->leftJoin('rooms', 'transactions.room_id', '=', 'rooms.id')
+        ->leftJoin('users', 'transactions.user_id', '=', 'users.id')
+        ->where('status', 0)
+        ->get();
+        dd($data);
+        return view('resepsionis.invoice',compact('data'));
+    }
+    public function cekIn()
+    {
+        $data = DB::table('transactions')
+        ->select('transactions.*' , 'rooms.harga', 'rooms.tipeKamar', 'rooms.jumlah as tKamar', 'users.email', 'users.name', 'users.role')
+        ->leftJoin('rooms', 'transactions.room_id', '=', 'rooms.id')
+        ->leftJoin('users', 'transactions.user_id', '=', 'users.id')
+        ->where('status', 1)
+        ->get();
+        return view('resepsionis.invoice',compact('data'));
+    }
+    public function cekOut()
+    {
+        $data = DB::table('transactions')
+        ->select('transactions.*' , 'rooms.harga', 'rooms.tipeKamar', 'rooms.jumlah as tKamar', 'users.email', 'users.name', 'users.role')
+        ->leftJoin('rooms', 'transactions.room_id', '=', 'rooms.id')
+        ->leftJoin('users', 'transactions.user_id', '=', 'users.id')
+        ->where('status', 2)
+        ->get();
+        return view('resepsionis.invoice',compact('data'));
+    }
+    public function cancel()
+    {
+        $data = DB::table('transactions')
+        ->select('transactions.*' , 'rooms.harga', 'rooms.tipeKamar', 'rooms.jumlah as tKamar', 'users.email', 'users.name', 'users.role')
+        ->leftJoin('rooms', 'transactions.room_id', '=', 'rooms.id')
+        ->leftJoin('users', 'transactions.user_id', '=', 'users.id')
+        ->where('status', 3)
+        ->get();
+        return view('resepsionis.invoice',compact('data'));
+    }
+    public function selesai()
+    {
+        $data = DB::table('transactions')
+        ->select('transactions.*' , 'rooms.harga', 'rooms.tipeKamar', 'rooms.jumlah as tKamar', 'users.email', 'users.name', 'users.role')
+        ->leftJoin('rooms', 'transactions.room_id', '=', 'rooms.id')
+        ->leftJoin('users', 'transactions.user_id', '=', 'users.id')
+        ->where('status', 4)
+        ->get();
+        return view('resepsionis.invoice',compact('data'));
     }
 
     /**
@@ -40,7 +98,6 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $uuid = Str::uuid()->toString();
         $request->validate([
             'namaPemesan' =>'required|max:50',
             'telp' =>'required|max:15',
@@ -123,6 +180,22 @@ class TransactionController extends Controller
     public function acc(Transaction $id)
     {
         $id -> update(['status' =>1]);
-        return redirect()->back()->with('success','update');
+        return redirect()->back()->with('Berhasil','Berhasil Menerima');
+    }
+    public function batal(Transaction $id)
+    {
+        $id -> update(['status' =>3]);
+        return redirect()->back()->with('Delete','Membatalkan Pesanan');
+    }
+
+    public function detail(Transaction $tr, $kode){
+        // $data = DB::table('transactions')->where('user_id', $user->id)->get();
+        $data = DB::table('transactions')
+                ->select('transactions.*' , 'rooms.harga', 'rooms.tipeKamar', 'rooms.jumlah as tKamar')
+                ->leftJoin('rooms', 'transactions.room_id', '=', 'rooms.id')
+                ->where('kode', $kode)
+                ->get();
+        // dd($data);
+        return view('tamu.detail', compact('data'));
     }
 }

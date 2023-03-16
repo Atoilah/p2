@@ -73,7 +73,9 @@ class TamuController extends Controller
     public function invoice(User $user){
         // $data = DB::table('transactions')->where('user_id', $user->id)->get();
         $data = DB::table('transactions')
+                ->select('transactions.*' , 'rooms.harga', 'rooms.tipeKamar', 'rooms.jumlah as tKamar')
                 ->leftJoin('rooms', 'transactions.room_id', '=', 'rooms.id')
+                ->where('user_id', $user->id)
                 ->get();
         $total = DB::table('transactions')->where('user_id', $user->id)->count();
         $semua = DB::table('transactions')->where('user_id', $user->id)->sum('jumlah');
@@ -81,15 +83,5 @@ class TamuController extends Controller
 
         return view('tamu.invoice', compact('user', 'data', 'total', 'fRooms'));
     }
-    public function detail(User $user){
-        // $data = DB::table('transactions')->where('user_id', $user->id)->get();
-        $data = DB::table('transactions')
-                ->leftJoin('rooms', 'transactions.room_id', '=', 'rooms.id')
-                ->get();
-        $total = DB::table('transactions')->where('user_id', $user->id)->count();
-        $semua = DB::table('transactions')->where('user_id', $user->id)->sum('jumlah');
-        $fRooms = Room::with(['facility_rooms'])->get();
 
-        return view('tamu.detail', compact('user', 'data', 'total', 'fRooms'));
-    }
 }

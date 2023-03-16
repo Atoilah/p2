@@ -19,7 +19,7 @@ use App\Http\Controllers\FacilityHotelController;
 |
 */
 Auth::routes(
-
+['verify' => true]
 );
 Route::get('/', function () {
     return redirect(route('awal'));
@@ -33,8 +33,11 @@ Route::middleware(['auth','user-role:user'])->group(function(){
     Route::get('/fasilitas', [App\Http\Controllers\TamuController::class, 'fasilitas'])->name('dataFasilitas');
     Route::get('/home', [App\Http\Controllers\TamuController::class, 'dashboard'])->name('aku');
     Route::post('home-pesan',[App\Http\Controllers\TransactionController::class, 'store'])->name('pesan');
+
     Route::get('/pesan/{user}', [App\Http\Controllers\TamuController::class, 'invoice'])->name('list');
-    Route::get('/detail/{user}', [App\Http\Controllers\TamuController::class, 'detail'])->name('detail');
+    Route::get('/pesan/detail/{kode}', [App\Http\Controllers\TransactionController::class, 'detail'])->name('detail');
+
+    Route::get('/pesan/batal/{id}', [App\Http\Controllers\TransactionController::class, 'batal'])->name('batal');
 });
 
 Route::middleware(['auth','user-role:admin'])->group(function(){
@@ -50,4 +53,11 @@ Route::middleware(['auth','user-role:admin'])->group(function(){
 
 Route::middleware(['auth','user-role:resepsionis'])->group(function(){
     Route::resource('transaction', TransactionController::class);
+    Route::put('/transaction/batal/{id}', [App\Http\Controllers\TransactionController::class, 'batal'])->name('tolak');
+    Route::put('/transaction/terima/{id}', [App\Http\Controllers\TransactionController::class, 'acc'])->name('terima');
+    Route::get('/transaction/persetujuan/', [App\Http\Controllers\TransactionController::class, 'persetujuan'])->name('persetujuan');
+    Route::get('/transaction/cekIn/', [App\Http\Controllers\TransactionController::class, 'cekIn'])->name('cekIn');
+    Route::get('/transaction/cekOut/', [App\Http\Controllers\TransactionController::class, 'cekOut'])->name('cekOut');
+    Route::get('/transaction/cancel/', [App\Http\Controllers\TransactionController::class, 'cancel'])->name('cancel');
+    Route::get('/transaction/selesai/', [App\Http\Controllers\TransactionController::class, 'selesai'])->name('selesai');
 });

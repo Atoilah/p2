@@ -66,7 +66,7 @@
             <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
         </div>
         <div class="nk-sidebar-brand">
-            <a href="{{ route('awal') }}" class="logo-link nk-sidebar-logo">
+            <a href="{{ route('transaction.index') }}" class="logo-link nk-sidebar-logo">
                 <img class="logo-light logo-img" src="/images/logo.png" srcset="/images/logo2x.png 2x" alt="logo">
                 <img class="logo-dark logo-img" src="/images/logo-dark.png" srcset="/images/logo-dark2x.png 2x" alt="logo-dark">
             </a>
@@ -83,64 +83,19 @@
                             </a>
                             <ul class="nk-menu-sub">
                                 <li class="nk-menu-item">
-                                    <a href="html/hotel/bookings.html" class="nk-menu-link"><span class="nk-menu-text">All Bookings</span></a>
+                                    <a href="{{ route('transaction.index') }}" class="nk-menu-link"><span class="nk-menu-text">Semua</span></a>
                                 </li>
                                 <li class="nk-menu-item">
-                                    <a href="html/hotel/booking-add.html" class="nk-menu-link"><span class="nk-menu-text">Add Booking</span></a>
+                                    <a href="{{ route('persetujuan') }}" class="nk-menu-link"><span class="nk-menu-text">Persetujuan</span></a>
                                 </li>
                                 <li class="nk-menu-item">
-                                    <a href="html/hotel/booking-edit.html" class="nk-menu-link"><span class="nk-menu-text">Edit Booking</span></a>
+                                    <a href="{{ route('cekIn') }}" class="nk-menu-link"><span class="nk-menu-text">CekIn</span></a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="{{ route('cekOut') }}" class="nk-menu-link"><span class="nk-menu-text">CekOut</span></a>
                                 </li>
                             </ul>
-                        </li><!-- .nk-menu-item -->
-                        <li class="nk-menu-item has-sub">
-                            <a href="#" class="nk-menu-link nk-menu-toggle">
-                                <span class="nk-menu-icon"><em class="icon ni ni-home-fill"></em></span>
-                                <span class="nk-menu-text">Room</span>
-                            </a>
-                            <ul class="nk-menu-sub">
-                                <li class="nk-menu-item">
-                                    <a href="html/hotel/room-list.html" class="nk-menu-link"><span class="nk-menu-text">All Rooms</span></a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="html/hotel/room-type.html" class="nk-menu-link"><span class="nk-menu-text">Room Types</span></a>
-                                </li>
-                            </ul>
-                        </li><!-- .nk-menu-item -->
-                        <li class="nk-menu-item has-sub">
-                            <a href="#" class="nk-menu-link nk-menu-toggle">
-                                <span class="nk-menu-icon"><em class="icon ni ni-reports"></em></span>
-                                <span class="nk-menu-text">Reports</span>
-                            </a>
-                            <ul class="nk-menu-sub">
-                                <li class="nk-menu-item">
-                                    <a href="html/hotel/report-stocks.html" class="nk-menu-link"><span class="nk-menu-text">Stocks</span></a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="html/hotel/report-expenses.html" class="nk-menu-link"><span class="nk-menu-text">Expenses</span></a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="html/hotel/report-booking.html" class="nk-menu-link"><span class="nk-menu-text">Booking</span></a>
-                                </li>
-                            </ul>
-                        </li><!-- .nk-menu-item -->
-                        <li class="nk-menu-item has-sub">
-                            <a href="#" class="nk-menu-link nk-menu-toggle">
-                                <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
-                                <span class="nk-menu-text">Payment</span>
-                            </a>
-                            <ul class="nk-menu-sub">
-                                <li class="nk-menu-item">
-                                    <a href="html/hotel/payment-methods.html" class="nk-menu-link"><span class="nk-menu-text">Payment Methods</span></a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="html/hotel/invoice-list.html" class="nk-menu-link"><span class="nk-menu-text">Invocie List</span></a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="html/hotel/invoice-details.html" class="nk-menu-link"><span class="nk-menu-text">Invocie Details</span></a>
-                                </li>
-                            </ul>
-                        </li><!-- .nk-menu-item -->
+                        </li>
                     </ul><!-- .nk-menu -->
                 </div><!-- .nk-sidebar-menu -->
             </div><!-- .nk-sidebar-content -->
